@@ -16,6 +16,7 @@ if (Meteor.isClient) {
     clearInterval(swagInt);
   };
   Template.splashPage.rendered = function () {
+    $(window).scrollTop(0);
     function animateBg() {
       var i = 0;
       swagInt = setInterval(function() {

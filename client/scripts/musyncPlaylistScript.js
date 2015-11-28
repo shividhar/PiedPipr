@@ -101,6 +101,7 @@
         $('#playList').height($('#playlistPanel').height() - 324);
     };
     Template.musyncPlaylist.rendered = function () {
+        $(window).scrollTop(0);
         setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'});}, 300);
         
         globalResizeFunctionArr.push(playListResizeFunc);

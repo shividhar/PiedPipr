@@ -1,7 +1,7 @@
 #footer{
 	width: 100%;
 	background-color: #161717;
-	height: 102px;
+	height: 72px;
 	position: relative;
 	box-shadow: 0px -1px 6px -3px #1A1919;
 	z-index: 4;
@@ -10,7 +10,7 @@
 	width: 800px;
 	position: relative;
 	margin: 0 auto;
-	height: 60px;
+	height: 48px;
 	padding-top: 24px;
 }
 #footer>div>a{
@@ -32,7 +32,7 @@
 	display: inline-block;
 	width: 12px;
 	float: left;
-	height: 48px;
+	height: 36px;
 	line-height: 39px;
 	text-align: center;
 }
