@@ -356,3 +356,10 @@
 	-ms-filter: brightness(200%);
 	-o-filter: brightness(200%);
 }
+
+
+
+
+.songReadyShowThis{
+	display: none;
+}
