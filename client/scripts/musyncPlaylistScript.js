@@ -27,7 +27,6 @@
 
             // Events like ready, state change, 
             events: {
-
                 onReady: function (event) {
                     iframeApiReady.set(true);
                 },
@@ -35,6 +34,15 @@
                     if(iframeApiReady.get())
                     {
                         if(event.data == 0){
+                            if (Router.current().data().playlist.songList.length == 0) {
+                                player.stopVideo();
+                                $('.songNotReadyShowThis').show();
+                                $('.songReadyShowThis').hide();
+                                var vids = $('#player').get(0);
+                                if(vids)
+                                    vids.stopVideo();
+                                return;
+                            };
                             if(currentlyPlayedVideo + 1 < Router.current().data().playlist.songList.length)
                             {
                                 currentlyPlayedVideo++;
@@ -61,6 +69,31 @@
           var tag = document.createElement('script');
           tag.src = 'https://www.youtube.com/iframe_api';
           document.head.appendChild(tag);
+
+          var self = this;
+          self.autorun(function() {
+
+            if (self.data.playlist.songList) {
+                if (self.data.playlist.songList.length) {
+                    $('.songNotReadyShowThis').hide();
+                    $('.songReadyShowThis').show();
+                }
+                else{
+                    $('.songNotReadyShowThis').show();
+                    $('.songReadyShowThis').hide();
+                    var vids = $('#player').get(0);
+                    if(vids)
+                        vids.stopVideo();
+                };
+            }
+            else{
+                $('.songNotReadyShowThis').show();
+                $('.songReadyShowThis').hide();
+                var vids = $('#player').get(0);
+                if (vids) 
+                    vids.stopVideo();
+            };
+          });
     };
     function playListResizeFunc(winh, winw) {
         $('#searchPanel, #playlistPanel').height(winh - 96);
@@ -96,14 +129,34 @@
             return Session.get('results');
         },
         searchQLen: function() {
-            return Session.get('searchQ').length;
+            return Session.get('searchQ')? Session.get('searchQ').length: false;
         },
         songList: function(){
-            var re = new Array(this.playlist.songList.length);
-            for(var i = 0; i < this.playlist.songList.length; i++){
-                re[i] = {videoId: this.playlist.songList[i], songPosition: i};
+            if (this.playlist.songList) {
+                if (this.playlist.songList.length) {
+                    var re = new Array(this.playlist.songList.length);
+                    for(var i = 0; i < this.playlist.songList.length; i++){
+                        re[i] = {videoId: this.playlist.songList[i], songPosition: i};
+                    };
+                    $('.songNotReadyShowThis').hide();
+                    $('.songReadyShowThis').show();
+                    return re;
+                }
+                else{
+                    $('.songNotReadyShowThis').show();
+                    $('.songReadyShowThis').hide();
+                    var vids = $('#player').get(0);
+                    if (vids) 
+                        vids.stopVideo();
+                };
+            }
+            else{
+                $('.songNotReadyShowThis').show();
+                $('.songReadyShowThis').hide();
+                var vids = $('#player').get(0);
+                if (vids) 
+                    vids.stopVideo();
             };
-            return re;
         },
         dataApiReady: function() {
             return dataApiReady;

@@ -15,13 +15,14 @@
 }
 #footer>div>a{
 	text-decoration: none;
-	font-size: 13px;
+	font-size: 10px;
 	color: #DEDEDE;
 	display: inline-block;
 	float: left;
 	height: 48px;
 	line-height: 48px;
 	text-align: center;
+	text-decoration: underline;
 }
 #footer>div>span{
 	color: #4E524F;
