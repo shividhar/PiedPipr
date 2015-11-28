@@ -1,0 +1,15 @@
+<template name="musyncSearchResultItem">
+    <div>
+        <p>
+            {{ resultTitle }}
+        </p>
+        <p>
+            {{ resultAuthor }}
+        </p>
+        <img width="200" height="150" src="{{ resultThumb }}">
+        <svg class="songlistAdd" width="25" height="25">
+            <line x1="0" y1="12.5" x2="25" y2="12.5"  style="stroke-width:5; stroke: black"></line>
+            <line y1="0" x1="12.5" y2="25" x2="12.5"  style="stroke-width:5; stroke: black"></line>
+        </svg>
+    </div>
+</template>
