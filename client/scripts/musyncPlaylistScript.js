@@ -55,16 +55,21 @@
 
     // YT.load();
     
-    Template.musyncPlaylist.created = function(){
-          gapi.client.setApiKey(apiKey);
-          gapi.client.load('youtube', 'v3').then(youtubeDataApiLoaded);
-          var tag = document.createElement('script');
-          tag.src = 'https://www.youtube.com/iframe_api';
-          document.head.appendChild(tag);
+    Template.musyncPlaylist.rendered = function(){
+        $('body').attr({
+            onload: function(){
+                if(gapi.client){
+                    gapi.client.setApiKey(apiKey);
+                    gapi.client.load('youtube', 'v3').then(youtubeDataApiLoaded);
+                    var tag = document.createElement('script');
+                    tag.src = 'https://www.youtube.com/iframe_api';
+                    document.head.appendChild(tag);
+                    setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'});}, 300);
+                }
+            }()
+        });
     };
-    Template.musyncPlaylist.rendered = function () {
-        setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'});}, 300);
-    };
+
     Template.musyncPlaylist.destroyed = function () {
         
     };
