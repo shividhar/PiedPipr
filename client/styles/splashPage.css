@@ -46,7 +46,7 @@
 .splashPage>div:first-of-type>a>span{
 	position: absolute;
 	height: 100%; width: 100%;
-	z-index: -1;
+	z-index: 1;
 	background-color: white;
 	opacity: 0.1;
 	left: 0; top: 0;
@@ -57,7 +57,7 @@
 	        transition: opacity .2s;
 }
 .splashPage>div:first-of-type>a:hover>span{
-	opacity: 0.3
+	opacity: 0.3;
 }
 .splashPage>div:first-of-type>a:first-of-type{
 	margin-left: 30px;
@@ -76,13 +76,15 @@
 	z-index: -1;
 	height: 100%; width: 100%;
 	top: 0; left: 0;
-	opacity: 0.6;
+	/*opacity: 0.6;*/
+	background-color: #423F2E;
 }
 .splashPage>div:nth-of-type(2)>div{
 	position: fixed;
 	z-index: 0;
 	height: 100%; width: 100%;
 	top: 0; left: 0;
+	opacity: 0.1;
 	/*-webkit-transition: opacity 2.4s;
 	   -moz-transition: opacity 2.4s;
 	    -ms-transition: opacity 2.4s;

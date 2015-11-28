@@ -1,32 +1,36 @@
 <template name="musyncPlaylist">
     <div id="searchPanel">
         <div id="searchArea">
-            <input type="text" name="searchQueryInput" placeholder="Search YouTube for a video to add...">
+            <input type="text" name="searchQueryInput" placeholder="Search YouTube for a video to add..." tabindex="1">
             <img src="/images/searchIco.png">
         </div>
         <div id="searchResults">
-            {{#if searchResults}}
-                {{#each searchResults}}
-                    {{> musyncSearchResultItem}}
-                {{/each}}
-            {{else}}
-                {{#if searchQLen}}
-                    <p>No results</p>
+            {{#if searchQLen}}
+                {{#if searchResults}}
+                    {{#each searchResults}}
+                        {{> musyncSearchResultItem}}
+                    {{/each}}
                 {{else}}
-                    <p>...</p>
+                    <p>No results</p>
+                {{/if}}
+            {{else}}
+                {{#if dataApiReady}}
+                    <p>...</p> 
+                {{else}}
+                    <p>Preparing searcher...</p>
                 {{/if}}
             {{/if}}
         </div>
     </div>
     <div id="playlistPanel">
         <div id="nowPlaying">
-            <h2>Now playing</h2>
+            <h2>Now playing <span><a class="isBolded" id="loopThisShit">Loop</a> &bull; <a id="shuffleThisShit">Shuffle</a></span></h2>
             <div id="player"></div>
         </div>
-        <div id="controls">
-            <a>Back</a>
+        <div id="playerControls">
+            <a>Previous</a>
             <p>Coming up</p>
-            <a>Forward</a>
+            <a>Next</a>
         </div>
         <div id="playList">
             {{#each songList}}

@@ -48,3 +48,8 @@ a:active{
 b{
   font-weight: bold!important;
 }
+
+
+.isBolded{
+  font-weight: 900!important;
+}

@@ -50,21 +50,15 @@ Template.musyncSongListItem.helpers({
 });
 
 Template.musyncSongListItem.events({
-    'click .songlistMoveUp': function(e)
-    {
-        if(this.songPosition !== 0)
-        {
+    'click .songlistMoveUp': function(e){
+        if(this.songPosition !== 0){
             Meteor.call("moveSongInPlaylist", { videoId: this.videoId, playlistId: Playlists.findOne().playlistId, songPosition: this.songPosition - 1 } );
         }
-    }
-    
-    , 'click .songlistMoveDown': function(e)
-    {
+    }, 
+    'click .songlistMoveDown': function(e){
         Meteor.call("moveSongInPlaylist", { videoId: this.videoId, playlistId: Playlists.findOne().playlistId, songPosition: this.songPosition + 1 } );
-    }
-    
-    , 'click .songlistRemove': function(e)
-    {
+    }, 
+    'click .songlistRemove': function(e){
         Meteor.call("removeSongFromPlaylist", { videoId: this.videoId, playlistId: Playlists.findOne().playlistId});
     },
     'click .songlistButton': function(e){

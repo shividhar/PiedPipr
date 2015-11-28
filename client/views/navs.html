@@ -8,12 +8,12 @@
 		<div>
 			<a href="/"></a>
 			<ul>
-				<li id="createPlaylist">Create playlist</li>
-				<li><a href="/help">Help</a></li>
+				<li id="createPlaylist"  class="sixPaddingsOnSides">Create playlist</li>
+				<li><a href="/help"  class="sixPaddingsOnSides">Help</a></li>
 				{{#if thisUser}}
-					<li id="menuOptions">{{thisUser.name}} &#9660;</li>
+					<li id="menuOptions" class="sixPaddingsOnSides">{{thisUser.name}} &#9660;</li>
 				{{else}}
-					<li><a href="/app">App</a></li>
+					<li><a href="/app"  class="sixPaddingsOnSides">App</a></li>
 				{{/if}}
 			</ul>
 		</div>

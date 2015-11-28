@@ -19,8 +19,8 @@
         // Make sure it's a global variable.
         player = new YT.Player("player", {
 
-            height: "400", 
-            width: "600", 
+            height: "240", 
+            width: "520", 
 
             // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
             videoId: "", 
@@ -62,38 +62,80 @@
           tag.src = 'https://www.youtube.com/iframe_api';
           document.head.appendChild(tag);
     };
+    function playListResizeFunc(winh, winw) {
+        $('#searchPanel, #playlistPanel').height(winh - 96);
+        $('#playList').height($('#playlistPanel').height() - 324);
+    };
     Template.musyncPlaylist.rendered = function () {
         setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'});}, 300);
+        
+        globalResizeFunctionArr.push(playListResizeFunc);
+
+        $('#searchPanel, #playList').on('mousewheel',function(event) {
+            var evt = event || window.event;
+            var thisItemHeight = $(this).height() + parseInt($(this).css('padding-top')) + parseInt($(this).css('padding-bottom'));
+            var maxScroll = $(this)[0].scrollHeight - thisItemHeight;
+            if ($(this).scrollTop()>(maxScroll-1) && (evt.deltaY<0)) {
+                event.preventDefault();
+                return false;
+            }
+            else if ($(this).scrollTop()<1  && (evt.deltaY>0)) {
+                event.preventDefault();
+                return false;
+            };
+        });
     };
     Template.musyncPlaylist.destroyed = function () {
-        
+        Session.set('results', []);
+        Session.set('searchQ', '');
+        globalResizeFunctionArr.splice(globalResizeFunctionArr.indexOf(playListResizeFunc), 1);
     };
     Template.musyncPlaylist.helpers({
         searchResults : function(){
             return Session.get('results');
         },
+        searchQLen: function() {
+            return Session.get('searchQ').length;
+        },
         songList: function(){
             var re = new Array(this.playlist.songList.length);
             for(var i = 0; i < this.playlist.songList.length; i++){
-                re[i] = {videoId: this.playlist.songList[i], songPosition:i};
-            }
+                re[i] = {videoId: this.playlist.songList[i], songPosition: i};
+            };
             return re;
+        },
+        dataApiReady: function() {
+            return dataApiReady;
         }
     });
+    var searchKeyupTimeout;
     Template.musyncPlaylist.events({
-        'click #searchButton, keydown #searchField': function(e){
-            if(e.button == 0 || e.keyCode == 13){
-                if(!dataApiReady){ document.getElementById('searchError').innerHTML = "Youtube Data API is not ready!"; return; }
-                var request = gapi.client.youtube.search.list({q: document.getElementById('searchField').value, maxResults: 10, part: 'snippet'});
-                request.execute(function(response){
-                    var results = [];
-                    for(var i in response.items){
-                        var item = response.items[i];
-                        results.push({ videoId: item.id.videoId, resultTitle: item.snippet.title, resultAuthor: item.snippet.channelTitle, resultThumb: item.snippet.thumbnails.default.url });
-                    };
-                    
-                    Session.set('results', results);
-                });
-            }
+        'keyup input[name="searchQueryInput"]': function(e){
+            var $thisval = $(e.target).val();
+                if(dataApiReady){
+                    clearTimeout(searchKeyupTimeout);
+                    searchKeyupTimeout = setTimeout(function() {
+                        var request = gapi.client.youtube.search.list({q: $thisval, maxResults: 10, part: 'snippet'});
+                        request.execute(function(response){
+                            var results = [];
+                            for(var i in response.items){
+                                var item = response.items[i];
+                                results.push({ videoId: item.id.videoId, resultTitle: item.snippet.title, resultAuthor: item.snippet.channelTitle, resultThumb: item.snippet.thumbnails.default.url });
+                            };
+                            
+                            Session.set('results', results);
+                        });
+                    }, 600);
+                };
+                Session.set('searchQ', $thisval);
+        },
+        'focus #searchArea>input': function() {
+            $('#searchArea>img').css({'height': '24px', 'margin-top': '18px', 'margin-right': '18px'});
+        },
+        'blur #searchArea>input': function() {
+            $('#searchArea>img').removeAttr('style');
+        },
+        'click #searchArea>img': function() {
+            $('#searchArea>input').focus();
         }
     })

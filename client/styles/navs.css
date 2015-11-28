@@ -2,7 +2,7 @@
 	position: relative;
 	width: 100%; height: 72px;
 	min-width: 800px;
-	background-color: #232924;
+	background-color: #161717;
 	box-shadow: 0px 1px 6px -3px #1A1919;
 	z-index: 5;
 }
@@ -13,14 +13,15 @@
 	margin: 0 auto; height: 72px;
 }
 #navs>div>a:first-child{
-	width: 72px;
-	height: 72px;
+	width: 42px; height: 42px;
+	margin-top: 15px;
 	display: block;
 	float: left;
 	background-image: url('/images/logo.jpg');
 	background-size: 102%;
 	background-repeat: no-repeat;
 	background-position: center;
+	box-shadow: 0px 3px 12px -6px black;
 }
 #navs>div>ul{
 	display: block;
@@ -29,13 +30,14 @@
 	height: 72px;
 }
 #navs>div>ul>li{
-	width: 125px;
+	width: auto;
 	height: 72px;
 	float: right;
 	text-align: center;line-height: 72px;
 	cursor: pointer;
-	color: #A6C75F;
+	color: #D8E8E2;
 	font-size: 13px;
+	text-decoration: underline;
 
   -webkit-transition: color .2s, text-shadow .2s;
      -moz-transition: color .2s, text-shadow .2s;
@@ -46,9 +48,9 @@
 #navs>div>ul>li>a{
 	display: block;
 	height: 100%;
-	width: 100%;
-	color: #A6C75F;
-	text-decoration: none;
+	width: auto;
+	color: #D8E8E2;
+	text-decoration: underline;
 
   -webkit-transition: color .2s, text-shadow .2s;
      -moz-transition: color .2s, text-shadow .2s;
@@ -56,10 +58,13 @@
        -o-transition: color .2s, text-shadow .2s;
           transition: color .2s, text-shadow .2s;
 }
+.sixPaddingsOnSides{
+	padding-left: 12px; padding-right: 12px;
+}
 #navs>div>ul>li>a:hover, #navs>div>ul>li:hover{
 	text-shadow: 0px 1px 3px black;
 	color: #D3F095;
 }
-#navs>div>ul>li>a:active, #navs>div>ul>li:active{
+.sixPaddingsOnSides:active{
 	outline: 1px dotted #EDF1F2;
 }
