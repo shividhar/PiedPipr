@@ -1,22 +1,23 @@
 if(Meteor.isServer){
 	Meteor.methods({
 		createPlaylist: function(){
-		    if(Meteor.user()){
-    			var playlistId;	
-    			var insertedPlaylistId;
-    		    while(!Playlists.findOne({"playlistId": playlistId}) && (Playlists.find({}).count() != 2176782336)){
-    		        playlistId = Random.hexString(6).toUpperCase();
-    		        if(!Playlists.findOne({"playlistId": playlistId}) && (Playlists.find({}).count() != 2176782336)){
-    		            insertedPlaylistId = Playlists.insert({
-            		        "createdAt": new Date(),
-            		        "authorId": Meteor.userId(),
-            		        "playlistId": playlistId,
-            		        "songList": []
-            		    })
-    		        }
-    		    }
-    		    return playlistId
+			var playlistId;	
+			var insertedPlaylistId;
+		    while(!Playlists.findOne({"playlistId": playlistId}) && (Playlists.find({}).count() != 2176782336)){
+		        playlistId = Random.hexString(6).toUpperCase();
+		        if(!Playlists.findOne({"playlistId": playlistId}) && (Playlists.find({}).count() != 2176782336)){
+		        	var playlistObject = {
+		        		"createdAt": new Date(),
+	    		        "playlistId": playlistId,
+	    		        "songList": []
+		        	}
+		        	if(Meteor.userId()){
+		        		playlistObject.push(Meteor.userId())
+		        	}
+		            insertedPlaylistId = Playlists.insert(playlistObject)
+		        }
 		    }
+		    return playlistId
 		},
 		addSongToPlaylist: function(playlistData){
 		    if(playlistData.videoId == "" || typeof(playlistData.videoId) == 'undefined'){

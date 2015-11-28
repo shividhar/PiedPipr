@@ -36,13 +36,12 @@
                     if(iframeApiReady.get())
                     {
                         if(event.data == 0){
-                            console.log(currentlyPlayedVideo)
-                            console.log(Router.current().data().playlist.songList.length)
                             if(currentlyPlayedVideo + 1 < Router.current().data().playlist.songList.length)
                             {
                                 currentlyPlayedVideo++;
-                                console.log(currentlyPlayedVideo)
-                                console.log(Router.current().data().playlist.songList[currentlyPlayedVideo])
+                                player.loadVideoById(Router.current().data().playlist.songList[currentlyPlayedVideo]);
+                            }else{
+                                currentlyPlayedVideo = 0;
                                 player.loadVideoById(Router.current().data().playlist.songList[currentlyPlayedVideo]);
                             }
                         }

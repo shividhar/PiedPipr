@@ -1,7 +1,7 @@
-Meteor.startup(function () {
-    if(Meteor.isServer){
+if(Meteor.isServer){
+	Meteor.startup(function () {
         AccountsGuest.enabled = true;
         AccountsGuest.name = true
         AccountsGuest.anonymous = true;
-    }
-})
+	})
+}
