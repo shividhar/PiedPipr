@@ -185,8 +185,11 @@
                         request.execute(function(response){
                             var results = [];
                             for(var i in response.items){
-                                var item = response.items[i];
-                                results.push({ videoId: item.id.videoId, resultTitle: item.snippet.title, resultAuthor: item.snippet.channelTitle, resultThumb: item.snippet.thumbnails.default.url });
+                                //Filtering out YouTube Playlists
+                                if(response.items[i].id.videoId){
+                                    var item = response.items[i];
+                                    results.push({ videoId: item.id.videoId, resultTitle: item.snippet.title, resultAuthor: item.snippet.channelTitle, resultThumb: item.snippet.thumbnails.default.url });
+                                }
                             };
                             
                             Session.set('results', results);

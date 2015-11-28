@@ -29,21 +29,29 @@ if(Meteor.isServer){
 		    }
 		},
 		removeSongFromPlaylist: function(playlistData){
+			if(typeof(playlistData.songPosition) != 'undefined' && isNaN(playlistData.songPosition)){
+		        throw new Meteor.Error("Something went wrong.")
+		    }
 		    if(Playlists.findOne({"playlistId": playlistData.playlistId, "songList": playlistData.videoId})){
-		        Playlists.update({"playlistId":playlistData. playlistId}, {$pull: {"songList": playlistData.videoId}})
+		    	var songPositionOperator = "songList." + playlistData.songPosition;
+		        Playlists.update({"playlistId": playlistData.playlistId}, {$unset: {songPositionOperator: 1}}, {validate: false})
+		        Playlists.update({"playlistId": playlistData.playlistId}, {$pull: {"songList": null}})
 		    }else{
 		        throw new Meteor.Error("Something went wrong.");
 		    }
 		},
 		moveSongInPlaylist: function(playlistData){
-		    if(typeof(playlistData.songPosition) != 'undefined' && isNaN(playlistData.songPosition)){
+		    if(typeof(playlistData.initalSongPosition) != 'undefined' && isNaN(playlistData.initalSongPosition) && typeof(playlistData.finalSongPosition) != 'undefined' && isNaN(playlistData.finalSongPosition)){
 		        throw new Meteor.Error("Something went wrong.")
 		    }
 		    if(Playlists.findOne({"playlistId": playlistData.playlistId, "songList": playlistData.videoId})){
-		        Playlists.update({"playlistId": playlistData. playlistId}, {$pull: {"songList": playlistData.videoId}})
-		        Playlists.update({"playlistId": playlistData.playlistId}, {$push: {"songList": {$each: [playlistData.videoId], $position: Math.abs(playlistData.songPosition)}}})
+		    	var songPositionOperator = EJSON.stringify("songList." + playlistData.initalSongPosition + ": 1");
+		        Playlists.update({"playlistId": playlistData.playlistId}, {$unset: {songPositionOperator}}, {validate: false})
+		        Playlists.update({"playlistId": playlistData.playlistId}, {$pull: {"songList": null}})
+
+		        Playlists.update({"playlistId": playlistData.playlistId}, {$push: {"songList": {$each: [playlistData.videoId], $position: Math.abs(playlistData.finalSongPosition)}}})
 		    }else{
-		        throw new Meteor.Error("Playlist doens't exist.")
+		        throw new Meteor.Error("Playlist doesn't't exist.")
 		    }
 		}
 	})
