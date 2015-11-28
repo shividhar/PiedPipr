@@ -85,6 +85,7 @@
             };
         });
     };
+
     Template.musyncPlaylist.destroyed = function () {
         Session.set('results', []);
         Session.set('searchQ', '');

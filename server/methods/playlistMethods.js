@@ -8,13 +8,12 @@ if(Meteor.isServer){
 		        if(!Playlists.findOne({"playlistId": playlistId}) && (Playlists.find({}).count() != 2176782336)){
 		        	var playlistObject = {
 		        		"createdAt": new Date(),
+		        		"authorId": Meteor.userId(),
 	    		        "playlistId": playlistId,
 	    		        "songList": []
 		        	}
-		        	if(Meteor.userId()){
-		        		playlistObject.push(Meteor.userId())
-		        	}
-		            insertedPlaylistId = Playlists.insert(playlistObject)
+
+		            Playlists.insert(playlistObject)
 		        }
 		    }
 		    return playlistId
