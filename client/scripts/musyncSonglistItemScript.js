@@ -49,17 +49,22 @@ Template.musyncSongListItem.helpers({
     }
 });
 
+Template.musyncSongListItem.rendered = function () {
+    $('.songNotReadyShowThis').hide();
+    $('.songReadyShowThis').show();
+};
+
 Template.musyncSongListItem.events({
     'click .songlistMoveUp': function(e){
         if(this.songPosition !== 0){
-            Meteor.call("moveSongInPlaylist", { videoId: this.videoId, playlistId: Playlists.findOne().playlistId, songPosition: this.songPosition - 1 } );
+            Meteor.call("moveSongInPlaylist", { videoId: this.videoId, playlistId: Router.current().params.playlistId, songPosition: this.songPosition - 1 } );
         }
     }, 
     'click .songlistMoveDown': function(e){
-        Meteor.call("moveSongInPlaylist", { videoId: this.videoId, playlistId: Playlists.findOne().playlistId, songPosition: this.songPosition + 1 } );
+        Meteor.call("moveSongInPlaylist", { videoId: this.videoId, playlistId: Router.current().params.playlistId, songPosition: this.songPosition + 1 } );
     }, 
     'click .songlistRemove': function(e){
-        Meteor.call("removeSongFromPlaylist", { videoId: this.videoId, playlistId: Playlists.findOne().playlistId});
+        Meteor.call("removeSongFromPlaylist", { videoId: this.videoId, playlistId: Router.current().params.playlistId});
     },
     'click .songlistButton': function(e){
         if(iframeApiReady.get()){
