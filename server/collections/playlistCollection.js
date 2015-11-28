@@ -8,7 +8,7 @@ if(Meteor.isServer){
         },
         authorId: {
             type: String,
-            optional: false
+            optional: true
         },
         playlistId: {
             type: String,
