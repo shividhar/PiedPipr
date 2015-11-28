@@ -1,51 +1,27 @@
-<ion-view title="About" hide-nav-bar="false">
+<ion-view title="Host" hide-nav-bar="false">
 
-  <ion-nav-buttons side="primary">
+  <ion-nav-buttons side="left">
     <button class="button button-clear" ng-click="back()">
       Back
     </button>
   </ion-nav-buttons>
 
-  <ion-content class="padding backing-blue"  style="text-align: center;">
-    <h1 class="text">  </h1>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="done()">
+      Done
+    </button>
+  </ion-nav-buttons>
 
-    <div class="list card">
+  <ion-content class="padding backing-red"  style="text-align: center;">
 
-      <div class="item">
-        <h2>{{org.name}}</h2>
-        <p>{{org.location}}</p>
-      </div>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="text" placeholder="Host's name (e.g. Arun)">
+      </label>
 
-      <div class="item item-body">
-        <img class="full-image" ng-src={{org.image}}>
-        <p style="text-align: left;">
-          {{org.description}}
-          <br>
-          <br>
-          <br>
-        </p>
-        <h2>{{org.size}}</h2>
-
-      </div>
-
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" href="mailto:{{org.email}}">
-          <i class="icon ion-thumbsup"></i>
-          Contact
-        </a>
-
-        <a class="tab-item" href="{{org.website}}">
-          <i class="icon ion-share"></i>
-          Website
-        </a>
-
-        <a class="tab-item" ng-click="add(org)">
-          <i class="icon ion-plus-round"></i>
-          Add to My List
-        </a>
-
-      </div>
-
+      <label class="item item-input">
+        <input type="text" placeholder="Name of playlist (e.g. Arun's awesome playlist)">
+      </label>
     </div>
 
   </ion-content>

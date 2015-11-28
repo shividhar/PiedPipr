@@ -1,12 +1,30 @@
 <ion-view title="Confirm" hide-nav-bar="false">
-  <ion-content class="padding backing center"  style="text-align: center;">
+  <ion-content class="padding backing"  style="text-align: center;">
 
-    <h2 class="text">Please only input accurate data.</h2>
-    <p class="text"> Any signs of misuse will result in an IP ban. </p>
+    <h2 class="text">Arun's Awesome Playlist</h2>
+    <p class="text"> by Arun</p>
 
-    <button class="button button-block button-outline button-positive" ng-click="next()">
-      I understand.
-    </button>
+    <div id="player"></div>
+    
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'M7lc1UVf-VE'
+        });
+      }
+     </script>
 
   </ion-content>
 </ion-view>

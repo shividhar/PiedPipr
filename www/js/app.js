@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic','starter.controllers', 'firebase'])
+angular.module('starter', ['ionic','starter.controllers'])
 
 .run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function($scope, $rootScope) {
@@ -18,23 +18,7 @@ angular.module('starter', ['ionic','starter.controllers', 'firebase'])
 
   });
 
-  // initializing global variables of organization arrays, and helper texts
-
-  $rootScope.results = [];
-  $rootScope.list = [];
-  $rootScope.helperText = "Press the new button to add your own organizations!";
-  $rootScope.helperText2 = "or click on an Organization Card to learn about existing organizations";
-
 })
-
-// service for retriving array of orgazniations, which can be accessed from any controller
-
-.factory('Organizations', ['$firebaseArray', function($firebaseArray) {
-
-  var ref = new Firebase('https://voluntold.firebaseio.com/organizations');
-  return $firebaseArray(ref);
-
-}])
 
 // defining states of different views, and creating the reference to its .html file and URL
 
@@ -61,8 +45,8 @@ angular.module('starter', ['ionic','starter.controllers', 'firebase'])
                 })
 
                 $stateProvider
-                    .state('about', {
-                        url: '/about',
+                    .state('host', {
+                        url: '/host',
                         templateUrl: 'templates/about.html',
                         controller: 'AboutCtrl'
                     })
@@ -82,12 +66,12 @@ angular.module('starter', ['ionic','starter.controllers', 'firebase'])
                             })
 
                             $stateProvider
-                                .state('search', {
-                                    url: '/search',
+                                .state('join', {
+                                    url: '/join',
                                     templateUrl: 'templates/search.html',
                                     controller: 'SearchCtrl'
                                 })
-                                
+
     // defaults URL/state to the splash screen (first screen)
 
     $urlRouterProvider.otherwise('/splash');
