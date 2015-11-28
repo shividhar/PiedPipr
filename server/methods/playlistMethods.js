@@ -44,12 +44,15 @@ if(Meteor.isServer){
 		    if(typeof(playlistData.initalSongPosition) != 'undefined' && isNaN(playlistData.initalSongPosition) && typeof(playlistData.finalSongPosition) != 'undefined' && isNaN(playlistData.finalSongPosition)){
 		        throw new Meteor.Error("Something went wrong.")
 		    }
-		    if(Playlists.findOne({"playlistId": playlistData.playlistId, "songList": playlistData.videoId})){
-		    	var songPositionOperator = EJSON.stringify("songList." + playlistData.initalSongPosition + ": 1");
-		        Playlists.update({"playlistId": playlistData.playlistId}, {$unset: {songPositionOperator}}, {validate: false})
-		        Playlists.update({"playlistId": playlistData.playlistId}, {$pull: {"songList": null}})
+		    var playlist = Playlists.findOne({"playlistId": playlistData.playlistId, "songList": playlistData.videoId});
+		    if(playlist){
+		    	if(playlistData.finalSongPosition < playlist.songList){
+			    	var songPositionOperator = EJSON.stringify("songList." + playlistData.initalSongPosition + ": 1");
+			        Playlists.update({"playlistId": playlistData.playlistId}, {$unset: {songPositionOperator}}, {validate: false})
+			        Playlists.update({"playlistId": playlistData.playlistId}, {$pull: {"songList": null}})
 
-		        Playlists.update({"playlistId": playlistData.playlistId}, {$push: {"songList": {$each: [playlistData.videoId], $position: Math.abs(playlistData.finalSongPosition)}}})
+			        Playlists.update({"playlistId": playlistData.playlistId}, {$push: {"songList": {$each: [playlistData.videoId], $position: Math.abs(playlistData.finalSongPosition)}}})
+			    }
 		    }else{
 		        throw new Meteor.Error("Playlist doesn't't exist.")
 		    }
