@@ -151,6 +151,17 @@
 	box-shadow: 0px 1px 6px -3px #111111;
 	overflow: hidden;
 }
+#playlistPanel>h2{
+	font-size: 24px;
+	font-weight: bold;
+	color: #424242;
+	width: 80%;
+	margin-left: 10%;
+	text-align: center;
+	margin-top: 120px;
+	line-height: 36px;
+}
+
 
 #nowPlaying>h2{
 	color: #DEDEDE;

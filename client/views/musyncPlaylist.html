@@ -23,19 +23,20 @@
         </div>
     </div>
     <div id="playlistPanel">
-        <div id="nowPlaying">
+        <div id="nowPlaying" class="songReadyShowThis">
             <h2>Now playing <span><a class="isBolded" id="loopThisShit">Loop</a> &bull; <a id="shuffleThisShit">Shuffle</a></span></h2>
             <div id="player"></div>
         </div>
-        <div id="playerControls">
+        <div id="playerControls" class="songReadyShowThis">
             <a>Previous</a>
             <p>Coming up</p>
             <a>Next</a>
         </div>
-        <div id="playList">
+        <div id="playList" class="songReadyShowThis">
             {{#each songList}}
                 {{> musyncSongListItem}}
             {{/each}}
         </div>
+        <h2 class="songNotReadyShowThis">Add a video to this playlist by using the search bar to the right</h2>
     </div>
 </template>
