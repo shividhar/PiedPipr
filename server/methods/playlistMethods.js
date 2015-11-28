@@ -34,7 +34,7 @@ if(Meteor.isServer){
 		    }
 		    if(Playlists.findOne({"playlistId": playlistData.playlistId, "songList": playlistData.videoId})){
 		    	var songPositionOperator = "songList." + playlistData.songPosition;
-		        Playlists.update({"playlistId": playlistData.playlistId}, {$unset: {songPositionOperator: null}})
+		        Playlists.update({"playlistId": playlistData.playlistId}, {$unset: {songPositionOperator: 1}}, {validate: false})
 		        Playlists.update({"playlistId": playlistData.playlistId}, {$pull: {"songList": null}})
 		    }else{
 		        throw new Meteor.Error("Something went wrong.");
@@ -45,14 +45,13 @@ if(Meteor.isServer){
 		        throw new Meteor.Error("Something went wrong.")
 		    }
 		    if(Playlists.findOne({"playlistId": playlistData.playlistId, "songList": playlistData.videoId})){
-		    	var songPositionOperator = "songList." + playlistData.initalSongPosition;
-		        Playlists.update({"playlistId": playlistData.playlistId}, {$unset: {songPositionOperator: 1}})
-		        // Playlists.update({"playlistId": playlistData.playlistId}, {$unset: {"songList.2": 1}})
+		    	var songPositionOperator = EJSON.stringify("songList." + playlistData.initalSongPosition + ": 1");
+		        Playlists.update({"playlistId": playlistData.playlistId}, {$unset: {songPositionOperator}}, {validate: false})
 		        Playlists.update({"playlistId": playlistData.playlistId}, {$pull: {"songList": null}})
 
 		        Playlists.update({"playlistId": playlistData.playlistId}, {$push: {"songList": {$each: [playlistData.videoId], $position: Math.abs(playlistData.finalSongPosition)}}})
 		    }else{
-		        throw new Meteor.Error("Playlist doens't exist.")
+		        throw new Meteor.Error("Playlist doesn't't exist.")
 		    }
 		}
 	})
