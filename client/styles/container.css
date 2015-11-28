@@ -1,0 +1,11 @@
+#bodyItem{
+	position: relative;
+	width: 100%;
+	opacity: 0;
+	top: -24px;
+	-webkit-transition: top .3s, opacity .3s!important;
+	   -moz-transition: top .3s, opacity .3s!important;
+	    -ms-transition: top .3s, opacity .3s!important;
+	     -o-transition: top .3s, opacity .3s!important;
+	        transition: top .3s, opacity .3s!important;
+}

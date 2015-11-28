@@ -1,0 +1,50 @@
+/* latin-ext */
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oxygen'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v5/LC4u_jU27qpsdszDEgeU_3-_kf6ByYO6CLYdB4HQE-Y.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oxygen'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v5/qBSyz106i5ud7wkBU-FrPevvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+*{
+  font-family: 'Oxygen'!important;
+}
+body{
+  background-color: #302E2A;
+}
+
+
+h1.lightText{
+  color: #CED4D6;
+}
+p.lightText{
+  color: #EDF1F2;
+}
+a.lightText{
+  color: #A6C75F;
+  -webkit-transition: color .2s, text-shadow .2s;
+     -moz-transition: color .2s, text-shadow .2s;
+      -ms-transition: color .2s, text-shadow .2s;
+       -o-transition: color .2s, text-shadow .2s;
+          transition: color .2s, text-shadow .2s;
+}
+a.lightText:hover{
+  color: #D3F095;
+  text-shadow: 0px 1px 3px black;
+}
+a:active{
+  outline: 1px dotted #EDF1F2;
+}
+
+b{
+  font-weight: bold!important;
+}

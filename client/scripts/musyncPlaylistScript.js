@@ -7,10 +7,9 @@
     
     var queuedVideo;
     
-    function youtubeDataApiLoaded()
-    {
+    function youtubeDataApiLoaded(){
         dataApiReady.set(true);
-    }
+    };
     
 // YouTube API will call onYouTubeIframeAPIReady() when API ready.
     // Make sure it's a global variable.
@@ -63,16 +62,20 @@
           var tag = document.createElement('script');
           tag.src = 'https://www.youtube.com/iframe_api';
           document.head.appendChild(tag);
-    }
+    };
+    Template.musyncPlaylist.rendered = function () {
+        setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'});}, 300);
+    };
+    Template.musyncPlaylist.destroyed = function () {
+        
+    };
     Template.musyncPlaylist.helpers({
-        searchResults : function()
-        {
+        searchResults : function(){
             return Session.get('results');
         },
         songList: function(){
             var re = new Array(this.playlist.songList.length);
-            for(var i = 0; i < this.playlist.songList.length; i++)
-            {
+            for(var i = 0; i < this.playlist.songList.length; i++){
                 re[i] = {videoId: this.playlist.songList[i], songPosition:i};
             }
             return re;
@@ -83,21 +86,15 @@
             if(e.button == 0 || e.keyCode == 13){
                 if(!dataApiReady){ document.getElementById('searchError').innerHTML = "Youtube Data API is not ready!"; return; }
                 var request = gapi.client.youtube.search.list({q: document.getElementById('searchField').value, maxResults: 10, part: 'snippet'});
-                request.execute(function(response)
-                {
+                request.execute(function(response){
                     var results = [];
-                    for(var i in response.items)
-                    {
+                    for(var i in response.items){
                         var item = response.items[i];
                         results.push({ videoId: item.id.videoId, resultTitle: item.snippet.title, resultAuthor: item.snippet.channelTitle, resultThumb: item.snippet.thumbnails.default.url });
-                    }
+                    };
                     
                     Session.set('results', results);
                 });
             }
-        }
-        ,'click #createPlaylist': function(e)
-        {
-            Meteor.call('createPlaylist');
         }
     })

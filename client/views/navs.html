@@ -1,0 +1,21 @@
+<template name="navs">
+	{{#if shouldPushDown}}
+		{{#each navAlerts}}
+			{{>navAlertTemplate}}
+		{{/each}}
+	{{/if}}
+	<div id="navs" class="{{shouldPushDown}}">
+		<div>
+			<a href="/"></a>
+			<ul>
+				<li id="createPlaylist">Create playlist</li>
+				<li><a href="/help">Help</a></li>
+				{{#if thisUser}}
+					<li id="menuOptions">{{thisUser.name}} &#9660;</li>
+				{{else}}
+					<li><a href="/app">App</a></li>
+				{{/if}}
+			</ul>
+		</div>
+	</div>
+</template>

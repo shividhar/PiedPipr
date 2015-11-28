@@ -1,6 +1,5 @@
 Template.musyncSongListItem.helpers({
-    "apiCall" : function()
-    {
+    apiCall : function(){
         Session.set("songData" + this.videoId, { title: "", author: "", thumb: "", songPosition: this.songPosition });
         
         if(dataApiReady.get())
@@ -29,29 +28,23 @@ Template.musyncSongListItem.helpers({
         return this;
         //Session.set("song" + this.songPosition, this);
         //return Session.get("song" + this.songPosition);
-    }
-    , "videoId" : function()
-    {
+    }, 
+    videoId : function() {
         return this.videoId;
-    }
-    , "songPosition" : function()
-    {
+    }, 
+    songPosition : function() {
         return this.songPosition;
-    }
-    , "songOriginPlaylist" : function()
-    {
-        return Playlists.findOne().playlistId;
-    }
-    , "songName" : function()
-    {
+    }, 
+    songOriginPlaylist : function(){
+        return Router.current().params.playlistId;
+    }, 
+    songName : function(){
         return Session.get("songData" + this.videoId).title;
-    }
-    , "songThumb" : function()
-    {
+    }, 
+    songThumb : function(){
         return Session.get("songData" + this.videoId).thumb;
-    }
-    , "songAuthor" : function()
-    {
+    }, 
+    songAuthor : function(){
         return Session.get("songData" + this.videoId).author;
     }
 });

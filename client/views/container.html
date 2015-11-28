@@ -1,0 +1,10 @@
+<template name="container">
+	<head>
+		<link rel="icon" href="/favicon.ico">
+	</head>
+	{{> navs}}
+	<div id="bodyItem" class="{{bodyTemplate}}">
+		{{>UI.dynamic template=bodyTemplate}}
+	</div>
+	{{> footer}}
+</template>

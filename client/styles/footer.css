@@ -1,0 +1,48 @@
+#footer{
+	width: 100%;
+	background-color: #232924;
+	height: 102px;
+	margin-top: 24px;
+	position: relative;
+	box-shadow: 0px -1px 6px -3px #1A1919;
+	z-index: 4;
+}
+#footer>div{
+	width: 800px;
+	position: relative;
+	margin: 0 auto;
+	height: 60px;
+	padding-top: 24px;
+}
+#footer>div>a{
+	text-decoration: none;
+	font-size: 13px;
+	color: #DEDEDE;
+	display: inline-block;
+	float: left;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+}
+#footer>div>span{
+	color: #4E524F;
+	font-size: 9px;
+	padding-top: 5px;
+	padding-right: 3px; padding-left: 3px;
+	display: inline-block;
+	width: 12px;
+	float: left;
+	height: 48px;
+	line-height: 39px;
+	text-align: center;
+}
+#footer>div>p{
+	display: block;
+	width: 300px;
+	float: right;
+	height: 48px;
+	line-height: 48px;
+	font-size: 13px;
+	color: #7B877F;
+	text-align: right;
+}

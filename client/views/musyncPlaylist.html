@@ -1,34 +1,37 @@
 <template name="musyncPlaylist">
-    <table border="0">
-        <tbody>
-            <tr>
-                <td style='width:200px; vertical-align: top'>
-                    {{#each songList}}
-                        {{> musyncSongListItem}}
-                    {{/each}}
-                </td>
-                <td>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td style="width: 50%; vertical-align: top">
-                                    <input type="text" name="searchField" id="searchField" value="" />
-                                    <input type="button" name="searchButton" id="searchButton" value="Search" />
-                                    <p id='searchError'></p>
-                                    <div id="videoResultTable">
-                                        {{#each searchResults}}
-                                            {{> musyncSearchResultItem}}
-                                        {{/each}}
-                                    </div>
-                                </td>
-                                <td style="width: 50%; vertical-align: top">
-                                    <div id="player"></div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="searchPanel">
+        <div id="searchArea">
+            <input type="text" name="searchQueryInput" placeholder="Search YouTube for a video to add...">
+            <img src="/images/searchIco.png">
+        </div>
+        <div id="searchResults">
+            {{#if searchResults}}
+                {{#each searchResults}}
+                    {{> musyncSearchResultItem}}
+                {{/each}}
+            {{else}}
+                {{#if searchQLen}}
+                    <p>No results</p>
+                {{else}}
+                    <p>...</p>
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+    <div id="playlistPanel">
+        <div id="nowPlaying">
+            <h2>Now playing</h2>
+            <div id="player"></div>
+        </div>
+        <div id="controls">
+            <a>Back</a>
+            <p>Coming up</p>
+            <a>Forward</a>
+        </div>
+        <div id="playList">
+            {{#each songList}}
+                {{> musyncSongListItem}}
+            {{/each}}
+        </div>
+    </div>
 </template>

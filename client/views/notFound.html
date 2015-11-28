@@ -1,7 +1,15 @@
 <template name="notFound">
-    <h1>
-        404 Page Not Found
-    </h1>
-    <br />
-    <h6>Sorry...</h6>
+	<head>
+		<link rel="icon" href="/favicon.ico">
+	</head>
+	{{>navs}}
+	<div id="bodyItem" class="notFound">
+		<h1 class="lightText">404 - Not found :(</h1>
+		<hr>
+		<p class="lightText">The page you were looking for does not seem to exist...</p>
+		<a href="/" class="lightText">Home</a>
+		<p style="color:#5F635A;font-size:9px;">&bull;</p>
+		<span onclick="window.history.back();">back</span>
+	</div>
+	{{>footer}}
 </template>
