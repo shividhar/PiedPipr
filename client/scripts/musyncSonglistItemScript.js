@@ -49,6 +49,11 @@ Template.musyncSongListItem.helpers({
     }
 });
 
+Template.musyncSongListItem.rendered = function () {
+    $('.songNotReadyShowThis').hide();
+    $('.songReadyShowThis').show();
+};
+
 Template.musyncSongListItem.events({
     'click .songlistMoveUp': function(e){
         if(this.songPosition !== 0){

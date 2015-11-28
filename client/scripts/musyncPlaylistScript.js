@@ -29,20 +29,15 @@
             events: {
                 onReady: function (event) {
                     iframeApiReady.set(true);
+                    if (Router.current().data().playlist.songList.length) {
+                        $('.songNotReadyShowThis').hide();
+                        $('.songReadyShowThis').show();
+                    };
                 },
                 onStateChange: function(event){
                     if(iframeApiReady.get())
                     {
                         if(event.data == 0){
-                            if (Router.current().data().playlist.songList.length == 0) {
-                                player.stopVideo();
-                                $('.songNotReadyShowThis').show();
-                                $('.songReadyShowThis').hide();
-                                var vids = $('#player').get(0);
-                                if(vids)
-                                    vids.stopVideo();
-                                return;
-                            };
                             if(currentlyPlayedVideo + 1 < Router.current().data().playlist.songList.length)
                             {
                                 currentlyPlayedVideo++;
@@ -51,6 +46,18 @@
                                 currentlyPlayedVideo = 0;
                                 player.loadVideoById(Router.current().data().playlist.songList[currentlyPlayedVideo]);
                             }
+                            if (Router.current().data().playlist.songList.length == 0) {
+                                player.stopVideo();
+                                $('.songNotReadyShowThis').show();
+                                $('.songReadyShowThis').hide();
+                                var vids = $('#player').get(0);
+                                if(vids)
+                                    vids.stopVideo();
+                            }
+                            else{
+                                $('.songNotReadyShowThis').hide();
+                                $('.songReadyShowThis').show();
+                            };
                         }
                     }
                 }
@@ -64,12 +71,6 @@
     // YT.load();
     
     Template.musyncPlaylist.created = function(){
-          gapi.client.setApiKey(apiKey);
-          gapi.client.load('youtube', 'v3').then(youtubeDataApiLoaded);
-          var tag = document.createElement('script');
-          tag.src = 'https://www.youtube.com/iframe_api';
-          document.head.appendChild(tag);
-
           var self = this;
           self.autorun(function() {
 
@@ -118,11 +119,21 @@
             };
         });
     };
-
+    Template.playerItem.rendered = function () {
+        if (gapi.client) {
+            gapi.client.setApiKey(apiKey);
+            gapi.client.load('youtube', 'v3').then(youtubeDataApiLoaded);
+            var tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            document.head.appendChild(tag);
+        };
+    };
     Template.musyncPlaylist.destroyed = function () {
         Session.set('results', []);
         Session.set('searchQ', '');
         globalResizeFunctionArr.splice(globalResizeFunctionArr.indexOf(playListResizeFunc), 1);
+        dataApiReady.set(false);
+        iframeApiReady.set(false);
     };
     Template.musyncPlaylist.helpers({
         searchResults : function(){

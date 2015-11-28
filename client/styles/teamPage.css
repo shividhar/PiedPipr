@@ -1,17 +1,9 @@
 .teamPage>h1{
 	font-size: 36px;
 	text-align: center;
-	margin-top: 25px;
-	margin-bottom: 36px;
+	margin-top: 12px;
+	margin-bottom: 24px;
 	text-shadow: 0px 1px 3px #111111;
-}
-.teamPage>h1>img{
-	width: 54px;
-	position: relative;
-	top: -12px;
-	margin-bottom: 12px;
-	display: inline-block;
-	box-shadow: 0px 3px 12px -6px #111111;
 }
 .teamPage>div:first-of-type{
 	width: 600px;
@@ -155,24 +147,39 @@ p.centerOnteamPage{
 	margin: auto;
 	border-style: none;
 	border-collapse:collapse;
-	padding:5px;
+	width: 600px;
+	margin-bottom: 48px;
 }
+
 
 .demo td {
 	word-wrap: break-word;
-	max-width: 24em;
-	margin: auto;
-	padding: 10px;
+	width: 50%;
+	float: left;
 }
 
 .demo td h3{
-	font-size: 16px;
-	color: white;
+	font-size: 13px;
+	color: #BAD67E;
+	text-align: center;
+	margin-bottom: 48px;
+	margin-top: 24px;
 }
 
 .demo td img{
-	max-height: 70%;
-	max-width: 70%;
+	height: 120px; width: 120px;
+	position: relative;
+	margin: 0 auto;
+	display: block;
+	border-radius: 100%;
+	box-shadow: 0px 3px 12px -6px black;
+
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 div.firstBg{

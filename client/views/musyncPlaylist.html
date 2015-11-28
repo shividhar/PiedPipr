@@ -25,7 +25,7 @@
     <div id="playlistPanel">
         <div id="nowPlaying" class="songReadyShowThis">
             <h2>Now playing <span><a class="isBolded" id="loopThisShit">Loop</a> &bull; <a id="shuffleThisShit">Shuffle</a></span></h2>
-            <div id="player"></div>
+            {{>playerItem}}
         </div>
         <div id="playerControls" class="songReadyShowThis">
             <a>Previous</a>
@@ -39,4 +39,7 @@
         </div>
         <h2 class="songNotReadyShowThis">Search and Add a Video!</h2>
     </div>
+</template>
+<template name="playerItem">
+    <div id="player"></div>
 </template>

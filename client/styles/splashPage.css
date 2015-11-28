@@ -29,9 +29,9 @@
 	height: 60px;
 	text-align: center; line-height: 60px;
 	cursor: pointer;
-	border: 2px solid #BAD67E;
+	border: 2px solid #BABABA;
 	text-align: center;
-	color: #BAD67E;
+	color: #BABABA;
 	font-size: 12px;
 	float: left;
 	margin-top: 12px;
@@ -44,6 +44,18 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+
+	-webkit-transition: border .2s, color .2s;
+	   -moz-transition: border .2s, color .2s;
+	    -ms-transition: border .2s, color .2s;
+	     -o-transition: border .2s, color .2s;
+	        transition: border .2s, color .2s;
+}
+.splashPage>div:first-of-type>a:first-of-type{
+	border: 2px solid #BAD67E; color: #BAD67E;
+}
+.splashPage>div:first-of-type>a:last-of-type:hover{
+	color: #FAFAFA; border: 2px solid #FAFAFA;
 }
 .splashPage>div:first-of-type>a>span{
 	position: absolute;
@@ -58,6 +70,9 @@
 	    -ms-transition: opacity .2s;
 	     -o-transition: opacity .2s;
 	        transition: opacity .2s;
+}
+.splashPage>div:first-of-type>a:first-of-type>span{
+	background-color: #DDE8DC;
 }
 .splashPage>div:first-of-type>a:hover>span{
 	opacity: 0.3;
@@ -88,7 +103,7 @@
 	z-index: 0;
 	height: 100%; width: 100%;
 	top: 0; left: 0;
-	opacity: 0.06;
+	opacity: 0.09;
 	/*-webkit-transition: opacity 2.4s;
 	   -moz-transition: opacity 2.4s;
 	    -ms-transition: opacity 2.4s;
