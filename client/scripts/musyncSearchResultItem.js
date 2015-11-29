@@ -15,6 +15,16 @@ Template.musyncSearchResultItem.helpers({
 
 Template.musyncSearchResultItem.events({
     'click .songlistAdd': function(e) {
-        Meteor.call('addSongToPlaylist', { videoId:this.videoId, playlistId: Router.current().params.playlistId});
+        var videoId = this.videoId
+        Meteor.call('addSongToPlaylist', {"videoId": videoId, playlistId: Router.current().params.playlistId}, function(err){
+            if(!err){
+                var playlist = Playlists.findOne({"playlistId": Router.current().params.playlistId});
+                if(playlist){
+                    if(playlist.songList.length == 1){
+                        Session.set("firstSongId", playlist.songList[0])
+                    }
+                }
+            }
+        });
     }
 });

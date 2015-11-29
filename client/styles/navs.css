@@ -17,7 +17,7 @@
 	margin-top: 15px;
 	display: block;
 	float: left;
-	background-image: url('/images/logo.jpg');
+	background-image: url('https://s3-us-west-2.amazonaws.com/piedpipr/images/logo.jpg');
 	background-size: 102%;
 	background-repeat: no-repeat;
 	background-position: center;

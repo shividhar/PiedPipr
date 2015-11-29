@@ -14,6 +14,11 @@ if(Meteor.isServer){
             type: String,
             optional: false
         },
+        playlistName: {
+            type: String,
+            defaultValue: "Untitled Infatrode",
+            optional: true
+        },
         songList: {
             type: [String],
             optional: false
