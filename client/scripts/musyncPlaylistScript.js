@@ -1,7 +1,7 @@
 if(Meteor.isClient){
     var apiKey = "AIzaSyD-29IN9uHhfvIVgQw9foPpz31bMc0bGE0";
   
-    var player = undefined;
+    player = undefined;
     dataApiReady = new ReactiveVar(false);
     iframeApiReady = new ReactiveVar(false);
     currentlyPlayedVideo = 0;
@@ -14,8 +14,6 @@ if(Meteor.isClient){
     // YouTube API will call onYouTubeIframeAPIReady() when API ready.
     // Make sure it's a global variable.
     onYouTubeIframeAPIReady = function (){
-        console.log(Template.musyncPlaylist)
-        console.log(Playlists.findOne())
         // New Video Player, the first argument is the id of the div.
         // Make sure it's a global variable.
         player = new YT.Player("player", {
