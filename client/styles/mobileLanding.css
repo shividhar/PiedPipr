@@ -1,0 +1,104 @@
+#headerMobile{
+	width: 100%;
+	height: 240px;
+	box-shadow: inset 0px 3px 24px -3px black;
+	position: relative;
+}
+#headerMobile>h1{
+	width: 70%;
+	margin-left: 15%;
+	padding-top: 60px;
+	font-size: 24px;
+	line-height: 34px;
+	color: #F7F7F7;
+	text-shadow: 0px 1px 3px black;
+	text-align: center;
+}
+#headerMobile>h1>img{
+	width: 48px;
+	box-shadow: 0px 3px 12px -6px black;
+	border-radius: 2px;
+}
+#headerMobile>div{
+	position: absolute;
+	height: 100%; width: 100%; top: 0; left: 0;
+	z-index: -1;
+	background-position: center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color: #CED4B6;
+	opacity: 0.24;
+	-webkit-filter: blur(3px);filter:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' ><filter id='blur3'><feGaussianBlur in='SourceGraphic' stdDeviation='3' /></filter></svg>#blur3");
+  filter:blur(3px);
+}
+
+#bodyMobile{
+	padding: 24px;
+	padding-bottom: 48px; padding-top: 9px;
+	width: 100%;
+	height: auto;
+	background-color: #F7F7F7;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#bodyMobile>h2{
+	margin-top: 48px;
+	margin-bottom: 24px;
+	font-size: 24px;
+	color: #787878;
+	text-align: center;
+}
+#bodyMobile>div{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	position: relative;
+}
+#bodyMobile>div>a{
+	display: block;
+	width: 46%;
+	margin: 2%;
+	float: left;
+}
+#bodyMobile>div>a>img{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+
+#bodyMobile>hr{
+	outline: none; border: none;
+	height: 1px; width: 80%;
+	position: relative; margin: 0 auto; display: block;
+	background-color: #BABABA;
+	margin-top: 48px;
+	margin-bottom: 12px;
+}
+#bodyMobile>p{
+	margin-top: 6px; margin-bottom: 12px;
+	font-size: 12px; line-height: 18px;
+	color: #111111;
+}
+
+#bodyMobile>ul{
+	list-style-type: disc;
+	width: 100%; height: auto;
+	margin-bottom: 24px;
+}
+#bodyMobile>ul>li{
+	margin-left: 1.5em;
+	padding-top: 6px; padding-bottom: 6px;
+	line-height: 18px; font-size: 13px;
+}
+
+#bodyMobile>a{
+	display: block;
+	text-align: center;
+	margin-top: 48px; margin-bottom: 48px;
+	text-decoration: underline;
+	color: #A6C75F;
+}

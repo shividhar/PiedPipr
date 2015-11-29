@@ -4,28 +4,29 @@
 		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	</head>
 	<div id="headerMobile">
-		<h1><img src="/images/logo.png"> PiedPipr</h1>
+		<h1><img src="https://s3-us-west-2.amazonaws.com/piedpipr/images/logo.jpg"><br>PiedPipr</h1>
+		<div style="background-image:url('/images/iPhoneAppImg.png')"></div>
 	</div>
 	<div id="bodyMobile">
 		<h2>Welcome.</h2>
 		<div>
 			<a href="" target="_blank" rel="nofollow"><img src="/images/googel-play-badge.png"></a>
-			<span>|</span>
 			<a href="" target="_blank" rel="nofollow"><img src="/images/appStoreBadge.png"></a>
 		</div>
-		
+		<hr>
 		<h2>What is PiedPipr?</h2>
 	    <p>
 	        "PiedPipr is a cloud-based business-facing disruptive public playlist sharing and generating platform. This unique cross-platform technology was created by integrating open data spaces, thus making the world a better place with the use of infatrodes."
 	        <Br><Br>
-	        <b style="font-size:14px;">Key features include:</b></p>
+	        <b style="font-size:14px;">Key features include:</b>
+	    </p>
 	    <ul>
 	        <li>Generating Youtube playlists on the fly</li>
 	        <li>Letting other users request music in your playlist through the sharing of a simple link</li>
 	        <li>Making the world a better place</li>
 	        <li>Infatrodes</li>
 	    </ul>
-
-	    <a href="/">Use desktop site</a>
+		<hr>
+	    <a href="/" onclick="Meteor.Device.preferDesktop();">Use desktop site</a>
 	</div>
 </template>
