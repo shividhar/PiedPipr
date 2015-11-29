@@ -5,6 +5,8 @@ if (Meteor.isClient) {
 			return Session.get('localVideosViewedData')? Session.get('localVideosViewedData').length: false;
 		},
 		modals: function() {
+			clearTimeout(tempClearRequestsTimeout);
+			
 			var modalsToRet = [];
 			if (Session.get('show-historyModal')) {
 				modalsToRet.push({'modalTemplateToUse': 'historyModal'});
@@ -24,7 +26,6 @@ if (Meteor.isClient) {
 						modalsToRet.push({'modalTemplateToUse': 'trackRecommendationChoiceModal'});
 					}
 					else{
-						clearTimeout(tempClearRequestsTimeout);
 						tempClearRequestsTimeout = setInterval(function() {
 							for (var i = Session.get('thisPlaylistData').songListToApprove.length - 1; i >= 0; i--) {
 								var videoId = Session.get('thisPlaylistData').songListToApprove[i];
