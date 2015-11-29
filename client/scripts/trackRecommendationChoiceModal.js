@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
 	Template.trackRecommendationChoiceModal.events({
-		'click #trackRecommendationChoice>div:first-of-type>a': function (e) {
+		'click #trackRecommendationChoice>div:first-of-type>a:not(.disabledButton)': function (e) {
 			var videoId = Session.get('thisPlaylistData').songListToApprove[0];
 			// Meteor.call('addSongToPlaylist', {"videoId": videoId, playlistId: Router.current().params.playlistId}, function(err) {
 			// 	if (!err) {
