@@ -29,6 +29,16 @@ Template.musyncSongListItem.helpers({
         //Session.set("song" + this.songPosition, this);
         //return Session.get("song" + this.songPosition);
     }, 
+    currentUserIsAuthor: function() {
+        var playlist = Playlists.findOne({"playlistId": Router.current().params.playlistId});
+        if(playlist){
+            if(playlist.authorId == Meteor.userId()){
+                return true
+            }else{
+                return false
+            }
+        }
+    },
     videoId : function() {
         return this.videoId;
     }, 

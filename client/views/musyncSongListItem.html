@@ -7,11 +7,13 @@
             <br>
             &ndash; <span>{{songAuthor}}</span>
         </p>
-        <div>
-            <a class="songlistMoveUp">&#x25B2; <span>move up</span></a>
-            <a class="songlistMoveDown">&#x25BC; <span>move down</span></a>
-            <a class="songlistRemove" title="remove"><img src="https://s3-us-west-2.amazonaws.com/piedpipr/images/closeIco.png" ></a>
-        </div>
+        {{#if currentUserIsAuthor}}
+            <div>
+                <a class="songlistMoveUp">&#x25B2; <span>move up</span></a>
+                <a class="songlistMoveDown">&#x25BC; <span>move down</span></a>
+                <a class="songlistRemove" title="remove"><img src="https://s3-us-west-2.amazonaws.com/piedpipr/images/closeIco.png" ></a>
+            </div>
+        {{/if}}
     </div>
 {{/with}}
 </template>
