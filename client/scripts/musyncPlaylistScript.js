@@ -22,7 +22,7 @@ if(Meteor.isClient){
             width: "520", 
 
             // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
-            videoId: "M7lc1UVf-VE", 
+            videoId: Session.get("firstSongId"), 
 
             // Events like ready, state change, 
             events: {
