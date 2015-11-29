@@ -4,7 +4,7 @@ if(Meteor.isClient){
     player = undefined;
     dataApiReady = new ReactiveVar(false);
     iframeApiReady = new ReactiveVar(false);
-    currentlyPlayedVideo = 0;
+    // currentlyPlayedVideo = 0;
     var queuedVideo;
     
     function youtubeDataApiLoaded(){
@@ -27,22 +27,25 @@ if(Meteor.isClient){
             // Events like ready, state change, 
             events: {
                 onReady: function (event) {
+                    Session.set('updatedShits', true);
                     iframeApiReady.set(true);
                     if (Router.current().data().playlist.songList.length) {
                         $('.songNotReadyShowThis').hide();
                         $('.songReadyShowThis').show();
                         event.target.playVideo();
                     };
+                    Session.set('updatedShits', false);
                 },
                 onStateChange: function(event){
+                    Session.set('updatedShits', true);
                     if(event.data == 0){
-                        if(currentlyPlayedVideo + 1 < Router.current().data().playlist.songList.length)
+                        if(Session.get('currentlyPlayedVideo') + 1 < Router.current().data().playlist.songList.length)
                         {
-                            currentlyPlayedVideo++;
-                            player.loadVideoById(Router.current().data().playlist.songList[currentlyPlayedVideo]);
+                            Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')+1);
+                            player.loadVideoById(Router.current().data().playlist.songList[Session.get('currentlyPlayedVideo')]);
                         }else{
-                            currentlyPlayedVideo = 0;
-                            player.loadVideoById(Router.current().data().playlist.songList[currentlyPlayedVideo]);
+                            Session.set('currentlyPlayedVideo', 0);
+                            player.loadVideoById(Router.current().data().playlist.songList[Session.get('currentlyPlayedVideo')]);
                         }
                         if (Router.current().data().playlist.songList.length == 0) {
                             player.stopVideo();
@@ -57,6 +60,7 @@ if(Meteor.isClient){
                             $('.songReadyShowThis').show();
                         };
                     }
+                    Session.set('updatedShits', false);
                 }
 
             }
@@ -65,6 +69,7 @@ if(Meteor.isClient){
     };
     YT.load();
     Template.musyncPlaylist.created  = function(){
+        Session.set('currentlyPlayedVideo', 0);
         // var tag = document.createElement('script');
         // tag.src = "https://www.youtube.com/iframe_api";
         // var firstScriptTag = document.getElementsByTagName('script')[0];

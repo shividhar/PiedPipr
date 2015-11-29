@@ -259,6 +259,9 @@
 .songlistButton:active{
 	outline: 1px dotted #FAFAFA;
 }
+.isCurrentVideoItem{
+	background-color: #353837;
+}
 .songlistButton>div:first-of-type{
 	height: 66px;
 	width: 114px;

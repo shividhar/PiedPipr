@@ -46,6 +46,11 @@ Template.musyncSongListItem.helpers({
     }, 
     songAuthor : function(){
         return Session.get("songData" + this.videoId).author;
+    },
+    isCurrentVideoItem: function() {
+        var a = Session.get('updatedShits');
+        console.log(this.songPosition, Session.get('currentlyPlayedVideo'), this.videoId)
+        return ((this.songPosition == Session.get('currentlyPlayedVideo'))? 'isCurrentVideoItem': '');
     }
 });
 
@@ -56,20 +61,38 @@ Template.musyncSongListItem.rendered = function () {
 
 Template.musyncSongListItem.events({
     'click .songlistMoveUp': function(e){
+        e.stopPropagation();
         if(this.songPosition !== 0){
-            Meteor.call("moveSongInPlaylist", { "videoId": this.videoId, "playlistId": Playlists.findOne().playlistId, "initalSongPosition": this.songPosition, "finalSongPosition": this.songPosition - 1 } );
-        }
+            Session.set('updatedShits', true);
+            Meteor.call("moveSongInPlaylist", { "videoId": this.videoId, "playlistId": Playlists.findOne().playlistId, "initalSongPosition": this.songPosition, "finalSongPosition": this.songPosition - 1 }, function(err) {
+                Session.set('updatedShits', false);
+            });
+            Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')-1);
+        };
     }, 
     'click .songlistMoveDown': function(e){
-        Meteor.call("moveSongInPlaylist", { "videoId": this.videoId, "playlistId": Playlists.findOne().playlistId, "initalSongPosition": this.songPosition, "finalSongPosition": this.songPosition + 1 } );
+        e.stopPropagation();
+        if (this.songPosition+1 !== Router.current().data().playlist.songList.length) {
+            Session.set('updatedShits', true);
+            Meteor.call("moveSongInPlaylist", { "videoId": this.videoId, "playlistId": Playlists.findOne().playlistId, "initalSongPosition": this.songPosition, "finalSongPosition": this.songPosition + 1 }, function(err) {
+                setTimeout(function(){Session.set('updatedShits', true);Session.set('updatedShits', false);}, 1200);
+            });
+            Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')+1);
+        };
     }, 
     'click .songlistRemove': function(e){
-        Meteor.call("removeSongFromPlaylist", { "videoId": this.videoId, "songPosition": this.songPosition, "playlistId": Playlists.findOne().playlistId});
+        e.stopPropagation();
+        Session.set('updatedShits', true);
+        Meteor.call("removeSongFromPlaylist", { "videoId": this.videoId, "songPosition": this.songPosition, "playlistId": Playlists.findOne().playlistId}, function(err) {
+            setTimeout(function(){Session.set('updatedShits', true);Session.set('updatedShits', false);}, 1200);
+        });
     },
     'click .songlistButton': function(e){
         if(iframeApiReady.get()){
+            Session.set('updatedShits', true);
             player.loadVideoById(this.videoId);
-            currentlyPlayedVideo = this.songPosition;
+            Session.set('currentlyPlayedVideo', this.songPosition);
+            Session.set('updatedShits', false);
         }
     }
 });
