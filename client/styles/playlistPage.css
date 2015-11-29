@@ -29,8 +29,8 @@
 	border: none;
 	outline: none;
 	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-	        box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	-webkit-transition: all .1s;
 	   -moz-transition: all .1s;
 	    -ms-transition: all .1s;
@@ -185,6 +185,23 @@
 #nowPlaying>h2>span>a.isBolded{
 	color: #FAFAFA;
 }
+
+a.darkerOptions{
+	color: #787878!important;
+	-webkit-transition: color .2s;
+	   -moz-transition: color .2s;
+	    -ms-transition: color .2s;
+	     -o-transition: color .2s;
+	        transition: color .2s;
+}
+a.darkerOptions:hover{
+	color: #BABFBE!important;
+}
+.darkerOptions.isBolded{
+	color: #BABFBE!important;
+}
+
+
 #playerControls{
 	height: 24px;
 	margin-bottom: 12px;

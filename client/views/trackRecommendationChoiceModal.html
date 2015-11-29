@@ -1,11 +1,13 @@
-<tempalte name="trackRecommendationChoiceModal">
+<template name="trackRecommendationChoiceModal">
 	<div class="modalCont">
-		<div class="choiceModal trackRecommendationChoice">
-			<p>An anonymous {{animalName}} has requested to add track '{{trackTitle}}' by '{{trackAuthor}}' to your app.</p>
-			<a>Accept</a>
-			<span>Decline</span>
+		<div id="trackRecommendationChoice" class="choiceModal">
+			<p>An <i>Anonymous {{animalName}}</i> has requested to add track '{{trackTitle}}' by '{{trackAuthor}}' to this playlist.</p>
+			<div>
+				<a>Accept</a>
+				<span>Decline</span>
+			</div>
 			<div style="background-image:url('{{trackThumb}}')"></div>
 		</div>
 	</div>
 	<div id="trackRecommendationChoice" class="bgItem"></div>
-</tempalte>
+</template>

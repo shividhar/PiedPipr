@@ -22,7 +22,13 @@ if(Meteor.isServer){
         songList: {
             type: [String],
             optional: false
+        },
+        songListToApprove: {
+            type: [String],
+            defaultValue: [],
+            optional: false
         }
+
     })
 
     Playlists.attachSchema(Schema.Playlists);

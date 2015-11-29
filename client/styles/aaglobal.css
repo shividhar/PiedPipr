@@ -53,3 +53,11 @@ b{
 .isBolded{
   font-weight: 900!important;
 }
+
+body.stopScroll{
+  overflow: hidden!important;
+}
+
+i{
+  font-style: italic!important;
+}
