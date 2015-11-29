@@ -119,7 +119,7 @@ if(Meteor.isClient){
     };
     Template.musyncPlaylist.rendered = function () {
         var vidsData = Session.get('localVideosViewedData');
-        if (vidsData) {
+        if (vidsData && vidsData.length) {
             for (var i = vidsData.length - 1; i >= 0; i--) {
                 if (vidsData[i].playlistId == Router.current().params.playlistId) {
                     break;

@@ -2,14 +2,7 @@ if (Meteor.isClient) {
   var swagInt;
   Template.splashPage.events({
     'click #createPlaylistSplashpage': function () {
-      // increment the counter when button is clicked
-        Meteor.call("createPlaylist", function(err, playlistId){
-            if(err){
-                alert(err);
-                return false;
-            }
-            Router.go("playlist", {"playlistId": playlistId});
-        })
+      Session.set('show-createPlaylistModal', true);  
     }
   });
   Template.splashPage.destroyed = function () {

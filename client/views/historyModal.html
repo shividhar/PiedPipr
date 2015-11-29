@@ -1,7 +1,8 @@
-<tempalte name="historyModal">
-	<div class="modalCont">
-		<div id="historyModal">
-			<p>Recently viewed playlists <span>Clear</span></p>
+<template name="historyModal">
+	<div class="modalCont" id="historyModal">
+		<div>
+			<a>Close</a>
+			<p>Recently viewed playlists &ndash; <span>Clear</span></p>
 			<ul>
 				{{#each recentPlaylists}}
 					<a href="/p/{{playlistId}}">{{playlistName}}<br><span>You visited this {{fromNowOfLastViewed}}</span></a>
@@ -10,4 +11,4 @@
 		</div>
 	</div>
 	<div id="historyModal" class="bgItem"></div>
-</tempalte>
+</template>
