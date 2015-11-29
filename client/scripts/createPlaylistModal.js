@@ -11,7 +11,12 @@ if (Meteor.isClient) {
 						alert(err);
 						return false;
 					}
-					Router.go("playlist", {"playlistId": playlistId});
+					if (Router.current().params.playlistId) {
+						window.location.href = "/p/" + playlistId;
+					}
+					else{
+						Router.go("playlist", {"playlistId": playlistId});
+					};
 					Session.set('show-createPlaylistModal', false);
 					$('body').attr('class', '');
 				});

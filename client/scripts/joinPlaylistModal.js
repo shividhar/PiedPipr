@@ -6,7 +6,12 @@ if (Meteor.isClient) {
 				$('.textInputModal>p').text('Invalid code!');
 			}
 			else{
-				Router.go('/p/'+val);
+				if (Router.current().params.playlistId) {
+					window.location.href = "/p/" + val;
+				}
+				else{
+					Router.go('/p/'+val);
+				};
 				Session.set('show-joinPlaylistModal', false);
 				$('body').attr('class', '');
 			};
