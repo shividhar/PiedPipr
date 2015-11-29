@@ -1,22 +1,28 @@
 if(Meteor.isServer){
 	Meteor.methods({
-		createPlaylist: function(){
-			var playlistId;	
-			var insertedPlaylistId;
-		    while(!Playlists.findOne({"playlistId": playlistId}) && (Playlists.find({}).count() != 2176782336)){
-		        playlistId = Random.hexString(6).toUpperCase();
-		        if(!Playlists.findOne({"playlistId": playlistId}) && (Playlists.find({}).count() != 2176782336)){
-		        	var playlistObject = {
-		        		"createdAt": new Date(),
-		        		"authorId": Meteor.userId(),
-	    		        "playlistId": playlistId,
-	    		        "songList": []
-		        	}
-
-		            Playlists.insert(playlistObject)
-		        }
-		    }
-		    return playlistId
+		createPlaylist: function(playlistData){
+			if(!Meteor.user() && !playlistData.authorId){
+				return false
+			}
+				var playlistId;	
+				var insertedPlaylistId;
+			    while(!Playlists.findOne({"playlistId": playlistId}) && (Playlists.find({}).count() != 2176782336)){
+			        playlistId = Random.hexString(6).toUpperCase();
+			        if(!Playlists.findOne({"playlistId": playlistId}) && (Playlists.find({}).count() != 2176782336)){
+			        	var playlistObject = {
+			        		"createdAt": new Date(),
+		    		        "playlistId": playlistId,
+		    		        "songList": []
+			        	}
+			        	if(Meteor.userId()){
+			        		_.extend(playlistObject, Meteor.userId())
+			        	}else{
+			        		_.extend(playlistObject, playlistData.authorId)
+			        	}
+			            Playlists.insert(playlistObject)
+			        }
+			    }
+			    return playlistId
 		},
 		addSongToPlaylist: function(playlistData){
 		    if(playlistData.videoId == "" || typeof(playlistData.videoId) == 'undefined'){
@@ -34,10 +40,13 @@ if(Meteor.isServer){
 		    }
 		    var playlist = Playlists.findOne({"playlistId": playlistData.playlistId, "songList": playlistData.videoId});
 		    if(playlist){
-		        _.each()
-
-		        Playlists.update({"playlistId": playlistData.playlistId}, {$unset: {"songList.0": 1}}, {validate: false})
-		        Playlists.update({"playlistId": playlistData.playlistId}, {$set: {"songList": playlistData}})
+		    	var updatedSongList = [];
+		        _.each(playlist.songList, function(item, index){
+		        	if(item != playlistData.videoId && index != playlist.songPosition){
+		        		updatedSongList.push(item)
+		        	}
+		        })
+		        Playlists.update({"playlistId": playlistData.playlistId}, {$set: {"songList": updatedSongList}})
 		    }else{
 		        throw new Meteor.Error("Something went wrong.");
 		    }
