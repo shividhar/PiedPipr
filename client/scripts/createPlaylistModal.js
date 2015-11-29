@@ -6,7 +6,7 @@ if (Meteor.isClient) {
 				$('.textInputModal>p').text('Please enter a longer playlist name.');
 			}
 			else{
-				Meteor.call("createPlaylist", function(err, playlistId){
+				Meteor.call("createPlaylist",  val, function(err, playlistId){
 					if(err){
 						alert(err);
 						return false;

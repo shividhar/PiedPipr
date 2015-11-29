@@ -171,6 +171,14 @@
 	margin-bottom: 9px;
 	font-style: italic;
 }
+#nowPlaying>h2>p{
+	height: 24px;
+	width: 168px;
+	float: left;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 #nowPlaying>h2>span{
 	float: right;
 	font-size: 6px;
