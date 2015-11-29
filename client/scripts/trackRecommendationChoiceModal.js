@@ -2,11 +2,14 @@ if (Meteor.isClient) {
 	Template.trackRecommendationChoiceModal.events({
 		'click #trackRecommendationChoice>div:first-of-type>a': function () {
 			var videoId = Session.get('thisPlaylistData').songListToApprove[0];
-			Meteor.call('addSongToPlaylist', {"videoId": videoId, playlistId: Router.current().params.playlistId}, function(err) {
-				if (!err) {
-					Meteor.call('removeUnapprovedSong', {"videoId": videoId, playlistId: Router.current().params.playlistId, "songPosition": 0});
-				};
-			});
+			// Meteor.call('addSongToPlaylist', {"videoId": videoId, playlistId: Router.current().params.playlistId}, function(err) {
+			// 	if (!err) {
+			// 		Meteor.call('removeUnapprovedSong', {"videoId": videoId, playlistId: Router.current().params.playlistId, "songPosition": 0});
+			// 	};
+			// });
+
+			Meteor.call('acceptUserReccomendation', {"videoId": videoId, "playlistId": Router.current().params.playlistId, "songPosition": 0})
+
 		},
 		'click #trackRecommendationChoice>div:first-of-type>span': function () {
 			var videoId = Session.get('thisPlaylistData').songListToApprove[0];
