@@ -1,20 +1,19 @@
+if(Meteor.isClient){
     var apiKey = "AIzaSyD-29IN9uHhfvIVgQw9foPpz31bMc0bGE0";
   
     player = undefined;
     dataApiReady = new ReactiveVar(false);
     iframeApiReady = new ReactiveVar(false);
     currentlyPlayedVideo = 0;
-    
     var queuedVideo;
     
     function youtubeDataApiLoaded(){
         dataApiReady.set(true);
     };
     
-// YouTube API will call onYouTubeIframeAPIReady() when API ready.
+    // YouTube API will call onYouTubeIframeAPIReady() when API ready.
     // Make sure it's a global variable.
-    onYouTubeIframeAPIReady = function () {
-
+    onYouTubeIframeAPIReady = function (){
         // New Video Player, the first argument is the id of the div.
         // Make sure it's a global variable.
         player = new YT.Player("player", {
@@ -23,7 +22,7 @@
             width: "520", 
 
             // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
-            videoId: "", 
+            videoId: "M7lc1UVf-VE", 
 
             // Events like ready, state change, 
             events: {
@@ -32,48 +31,54 @@
                     if (Router.current().data().playlist.songList.length) {
                         $('.songNotReadyShowThis').hide();
                         $('.songReadyShowThis').show();
+                        event.target.playVideo();
                     };
                 },
                 onStateChange: function(event){
-                    if(iframeApiReady.get())
-                    {
-                        if(event.data == 0){
-                            if(currentlyPlayedVideo + 1 < Router.current().data().playlist.songList.length)
-                            {
-                                currentlyPlayedVideo++;
-                                player.loadVideoById(Router.current().data().playlist.songList[currentlyPlayedVideo]);
-                            }else{
-                                currentlyPlayedVideo = 0;
-                                player.loadVideoById(Router.current().data().playlist.songList[currentlyPlayedVideo]);
-                            }
-                            if (Router.current().data().playlist.songList.length == 0) {
-                                player.stopVideo();
-                                $('.songNotReadyShowThis').show();
-                                $('.songReadyShowThis').hide();
-                                var vids = $('#player').get(0);
-                                if(vids)
-                                    vids.stopVideo();
-                            }
-                            else{
-                                $('.songNotReadyShowThis').hide();
-                                $('.songReadyShowThis').show();
-                            };
+                    if(event.data == 0){
+                        if(currentlyPlayedVideo + 1 < Router.current().data().playlist.songList.length)
+                        {
+                            currentlyPlayedVideo++;
+                            player.loadVideoById(Router.current().data().playlist.songList[currentlyPlayedVideo]);
+                        }else{
+                            currentlyPlayedVideo = 0;
+                            player.loadVideoById(Router.current().data().playlist.songList[currentlyPlayedVideo]);
                         }
+                        if (Router.current().data().playlist.songList.length == 0) {
+                            player.stopVideo();
+                            $('.songNotReadyShowThis').show();
+                            $('.songReadyShowThis').hide();
+                            var vids = $('#player').get(0);
+                            if(vids)
+                                vids.stopVideo();
+                        }
+                        else{
+                            $('.songNotReadyShowThis').hide();
+                            $('.songReadyShowThis').show();
+                        };
                     }
                 }
 
             }
 
         });
-
     };
+    YT.load();
+    Template.musyncPlaylist.created  = function(){
+        // var tag = document.createElement('script');
+        // tag.src = "https://www.youtube.com/iframe_api";
+        // var firstScriptTag = document.getElementsByTagName('script')[0];
 
-    // YT.load();
-    
-    Template.musyncPlaylist.created = function(){
-          var self = this;
-          self.autorun(function() {
-
+        // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        if(YT){
+            YT.load();
+        }
+        if (gapi.client) {
+            gapi.client.setApiKey(apiKey);
+            gapi.client.load('youtube', 'v3').then(youtubeDataApiLoaded);
+        };
+        var self = this;
+        self.autorun(function() {
             if (self.data.playlist.songList) {
                 if (self.data.playlist.songList.length) {
                     $('.songNotReadyShowThis').hide();
@@ -94,7 +99,7 @@
                 if (vids) 
                     vids.stopVideo();
             };
-          });
+        });
     };
     function playListResizeFunc(winh, winw) {
         $('#searchPanel, #playlistPanel').height(winh - 96);
@@ -120,21 +125,12 @@
             };
         });
     };
-    Template.playerItem.rendered = function () {
-        if (gapi.client) {
-            gapi.client.setApiKey(apiKey);
-            gapi.client.load('youtube', 'v3').then(youtubeDataApiLoaded);
-            var tag = document.createElement('script');
-            tag.src = 'https://www.youtube.com/iframe_api';
-            document.head.appendChild(tag);
-        };
-    };
     Template.musyncPlaylist.destroyed = function () {
         Session.set('results', []);
         Session.set('searchQ', '');
         globalResizeFunctionArr.splice(globalResizeFunctionArr.indexOf(playListResizeFunc), 1);
-        dataApiReady.set(false);
         iframeApiReady.set(false);
+        dataApiReady.set(false);
     };
     Template.musyncPlaylist.helpers({
         searchResults : function(){
@@ -144,15 +140,24 @@
             return Session.get('searchQ')? Session.get('searchQ').length: false;
         },
         songList: function(){
-            if (this.playlist.songList) {
-                if (this.playlist.songList.length) {
-                    var re = new Array(this.playlist.songList.length);
-                    for(var i = 0; i < this.playlist.songList.length; i++){
-                        re[i] = {videoId: this.playlist.songList[i], songPosition: i};
+            if(this.playlist){
+                if (this.playlist.songList) {
+                    if (this.playlist.songList.length) {
+                        var re = new Array(this.playlist.songList.length);
+                        for(var i = 0; i < this.playlist.songList.length; i++){
+                            re[i] = {videoId: this.playlist.songList[i], songPosition: i};
+                        };
+                        $('.songNotReadyShowThis').hide();
+                        $('.songReadyShowThis').show();
+                        return re;
+                    }
+                    else{
+                        $('.songNotReadyShowThis').show();
+                        $('.songReadyShowThis').hide();
+                        var vids = $('#player').get(0);
+                        if (vids) 
+                            vids.stopVideo();
                     };
-                    $('.songNotReadyShowThis').hide();
-                    $('.songReadyShowThis').show();
-                    return re;
                 }
                 else{
                     $('.songNotReadyShowThis').show();
@@ -162,13 +167,6 @@
                         vids.stopVideo();
                 };
             }
-            else{
-                $('.songNotReadyShowThis').show();
-                $('.songReadyShowThis').hide();
-                var vids = $('#player').get(0);
-                if (vids) 
-                    vids.stopVideo();
-            };
         },
         dataApiReady: function() {
             return dataApiReady;
@@ -208,3 +206,4 @@
             $('#searchArea>input').focus();
         }
     })
+}
