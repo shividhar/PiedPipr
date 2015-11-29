@@ -8,12 +8,13 @@
 		<div>
 			<a href="/"></a>
 			<ul>
+				<li id="joinPlaylist" class="sixPaddingsOnSides">Join playlist</li>
 				<li id="createPlaylist"  class="sixPaddingsOnSides">Create playlist</li>
-				<li><a href="/help"  class="sixPaddingsOnSides">Help</a></li>
-				{{#if thisUser}}
+				<li><a href="/help" id="helpPageLink" class="sixPaddingsOnSides">Help</a></li>
+				{{#if currentUserHasViewedVideos}}
 					<li id="toHistoryModal" class="sixPaddingsOnSides">History</li>
 				{{else}}
-					<li><a href="/app"  class="sixPaddingsOnSides">App</a></li>
+					<li><a href="/app" id="appPageLink" class="sixPaddingsOnSides">App</a></li>
 				{{/if}}
 			</ul>
 		</div>

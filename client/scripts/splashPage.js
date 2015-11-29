@@ -14,9 +14,13 @@ if (Meteor.isClient) {
   });
   Template.splashPage.destroyed = function () {
     clearInterval(swagInt);
+    $('#bodyItem').removeAttr('style').addClass('isTempNoShow');
+    $('#footer').hide();
   };
   Template.splashPage.rendered = function () {
     $(window).scrollTop(0);
+    $('#footer').show();
+    setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'}).removeClass('isTempNoShow');executeResizeFuncs();}, 300);
     function animateBg() {
       var i = 0;
       swagInt = setInterval(function() {
@@ -43,8 +47,6 @@ if (Meteor.isClient) {
       }, 2395);
       executeResizeFuncs();
     };
-
-    setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'});}, 300);
     animateBg();
   };
 }

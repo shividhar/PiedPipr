@@ -71,6 +71,10 @@
 .sixPaddingsOnSides{
 	padding-left: 18px; padding-right: 18px;
 }
+
+.isCurrentPageOnNavs{
+	color: #D3F095!important;
+}
 #navs>div>ul>li>a:hover, #navs>div>ul>li:hover{
 	text-shadow: 0px 1px 3px black;
 	color: #D3F095;
