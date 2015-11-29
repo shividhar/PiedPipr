@@ -47,7 +47,7 @@ if(Meteor.isClient){
                         }
                         else{
                             var vids = $('#player').get(0);
-                            if(vids)
+                            if(vids && dataApiReady && $('iframe')[0])
                                 vids.stopVideo();
                             return;
                         };
@@ -59,7 +59,7 @@ if(Meteor.isClient){
                             $('.songNotReadyShowThis').show();
                             $('.songReadyShowThis').hide();
                             var vids = $('#player').get(0);
-                            if(vids)
+                            if(vids && dataApiReady && $('iframe')[0])
                                 vids.stopVideo();
                         }
                         else{
@@ -100,7 +100,7 @@ if(Meteor.isClient){
                     $('.songNotReadyShowThis').show();
                     $('.songReadyShowThis').hide();
                     var vids = $('#player').get(0);
-                    if(vids)
+                    if(vids && dataApiReady && $('iframe')[0])
                         vids.stopVideo();
                 };
             }
@@ -108,7 +108,7 @@ if(Meteor.isClient){
                 $('.songNotReadyShowThis').show();
                 $('.songReadyShowThis').hide();
                 var vids = $('#player').get(0);
-                if (vids) 
+                if (vids && dataApiReady && $('iframe')[0]) 
                     vids.stopVideo();
             };
         });
@@ -199,7 +199,7 @@ if(Meteor.isClient){
                         $('.songNotReadyShowThis').show();
                         $('.songReadyShowThis').hide();
                         var vids = $('#player').get(0);
-                        if (vids) 
+                        if (vids && dataApiReady && $('iframe')[0]) 
                             vids.stopVideo();
                     };
                 }
@@ -207,7 +207,7 @@ if(Meteor.isClient){
                     $('.songNotReadyShowThis').show();
                     $('.songReadyShowThis').hide();
                     var vids = $('#player').get(0);
-                    if (vids) 
+                    if (vids && dataApiReady && $('iframe')[0]) 
                         vids.stopVideo();
                 };
             }
