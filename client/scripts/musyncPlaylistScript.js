@@ -235,7 +235,30 @@ if(Meteor.isClient){
             };
         },
         'click #shuffleThisShit': function() {
+            var thisData = Session.get('thisPlaylistData');
+            var thisArr = thisData.songList;
+            if (thisArr.length) {
 
+                var currentVideoId = thisArr[Session.get('currentlyPlayedVideo')];
+
+                function shuffle(array) {
+                    var currentIndex = array.length, temporaryValue, randomIndex;
+
+                    while (0 !== currentIndex) {
+                        randomIndex = Math.floor(Math.random() * currentIndex);
+                        currentIndex -= 1;
+
+                        temporaryValue = array[currentIndex];
+                        array[currentIndex] = array[randomIndex];
+                        array[randomIndex] = temporaryValue;
+                    };
+                    return array;
+                };
+                thisData.songList = shuffle(thisArr);
+                var newIndexOfVideo = thisData.songList.indexOf(currentVideoId);
+                Session.set('currentlyPlayedVideo', newIndexOfVideo);
+                Session.set('thisPlaylistData', thisData);
+            };
         },
         'click #playerControls>a:first-of-type': function() {
             if (Session.get('currentlyPlayedVideo') !== 0) {
