@@ -12,6 +12,12 @@
 	opacity: 0.75;
 }
 
+a.disabledButton{
+	cursor: default!important;
+	color: #DEDEDE!important;
+	background-color: #FAFAFA!important;
+}
+
 
 
 
