@@ -1,8 +1,16 @@
 if (Meteor.isClient) {
 	Template.helpPage.rendered = function () {
-		executeResizeFuncs();
-		setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'});}, 300);
+		$('#footer').show();
+		setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'}).removeClass('isTempNoShow');executeResizeFuncs();}, 300);
 		$(window).scrollTop(0);
+		$('#helpPageLink').addClass('isCurrentPageOnNavs');
+		executeResizeFuncs();
+	};
+	Template.helpPage.destroyed = function () {
+		$('#bodyItem').removeAttr('style').addClass('isTempNoShow');
+		Session.set('bodyTemplateWait', false);
+		$('#footer').hide();
+		$('#helpPageLink').removeClass('isCurrentPageOnNavs');
 	};
 	Template.helpPage.events({
 		'click .toItem1Help': function () {

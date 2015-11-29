@@ -28,8 +28,8 @@ if(Meteor.isClient){
             events: {
                 onReady: function (event) {
                     Session.set('updatedShits', true);
-                    iframeApiReady.set( true);
-                    if (Router.current().data().playlist.songList.length) {
+                    iframeApiReady.set(true);
+                    if (Session.get('thisPlaylistData').songList.length) {
                         $('.songNotReadyShowThis').hide();
                         $('.songReadyShowThis').show();
                         event.target.playVideo();
@@ -39,15 +39,22 @@ if(Meteor.isClient){
                 onStateChange: function(event){
                     Session.set('updatedShits', true);
                     if(event.data == 0){
-                        if(Session.get('currentlyPlayedVideo') + 1 < Router.current().data().playlist.songList.length)
-                        {
+                        if(Session.get('currentlyPlayedVideo') + 1 < Session.get('thisPlaylistData').songList.length){
                             Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')+1);
-                            player.loadVideoById(Router.current().data().playlist.songList[Session.get('currentlyPlayedVideo')]);
-                        }else{
-                            Session.set('currentlyPlayedVideo', 0);
-                            player.loadVideoById(Router.current().data().playlist.songList[Session.get('currentlyPlayedVideo')]);
                         }
-                        if (Router.current().data().playlist.songList.length == 0) {
+                        else if(Session.get('loopThisShit')){
+                            Session.set('currentlyPlayedVideo', 0);
+                        }
+                        else{
+                            var vids = $('#player').get(0);
+                            if(vids)
+                                vids.stopVideo();
+                            return;
+                        };
+                        player.loadVideoById(Session.get('thisPlaylistData').songList[Session.get('currentlyPlayedVideo')]);
+
+
+                        if (Session.get('thisPlaylistData').songList.length == 0) {
                             player.stopVideo();
                             $('.songNotReadyShowThis').show();
                             $('.songReadyShowThis').hide();
@@ -84,8 +91,8 @@ if(Meteor.isClient){
         };
         var self = this;
         self.autorun(function() {
-            if (self.data.playlist.songList) {
-                if (self.data.playlist.songList.length) {
+            if (Session.get('thisPlaylistData').songList) {
+                if (Session.get('thisPlaylistData').songList.length) {
                     $('.songNotReadyShowThis').hide();
                     $('.songReadyShowThis').show();
                 }
@@ -111,8 +118,10 @@ if(Meteor.isClient){
         $('#playList').height($('#playlistPanel').height() - 324);
     };
     Template.musyncPlaylist.rendered = function () {
+        Session.set('loopThisShit', true);
         $(window).scrollTop(0);
-        setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'});}, 300);
+        $('#footer').show();
+        setTimeout(function() {$('#bodyItem').css({'opacity': '1', 'top': '0'}).removeClass('isTempNoShow');executeResizeFuncs();}, 300);
         
         globalResizeFunctionArr.push(playListResizeFunc);
 
@@ -136,6 +145,11 @@ if(Meteor.isClient){
         globalResizeFunctionArr.splice(globalResizeFunctionArr.indexOf(playListResizeFunc), 1);
         iframeApiReady.set(false);
         dataApiReady.set(false);
+        Session.set('thisPlaylistData', '');
+
+        $('#bodyItem').removeAttr('style').addClass('isTempNoShow');
+        Session.set('bodyTemplateWait', false);
+        $('#footer').hide();
     };
     Template.musyncPlaylist.helpers({
         searchResults : function(){
@@ -145,12 +159,12 @@ if(Meteor.isClient){
             return Session.get('searchQ')? Session.get('searchQ').length: false;
         },
         songList: function(){
-            if(this.playlist){
-                if (this.playlist.songList) {
-                    if (this.playlist.songList.length) {
-                        var re = new Array(this.playlist.songList.length);
-                        for(var i = 0; i < this.playlist.songList.length; i++){
-                            re[i] = {videoId: this.playlist.songList[i], songPosition: i};
+            if(Session.get('thisPlaylistData')){
+                if (Session.get('thisPlaylistData').songList) {
+                    if (Session.get('thisPlaylistData').songList.length) {
+                        var re = new Array(Session.get('thisPlaylistData').songList.length);
+                        for(var i = 0; i < Session.get('thisPlaylistData').songList.length; i++){
+                            re[i] = {videoId: Session.get('thisPlaylistData').songList[i], songPosition: i};
                         };
                         $('.songNotReadyShowThis').hide();
                         $('.songReadyShowThis').show();
@@ -209,6 +223,29 @@ if(Meteor.isClient){
         },
         'click #searchArea>img': function() {
             $('#searchArea>input').focus();
+        },
+        'click #loopThisShit': function() {
+            if ($('#loopThisShit').hasClass('isBolded')) {
+                Session.set('loopThisShit', false);
+                $('#loopThisShit').removeClass('isBolded');
+            }
+            else{
+                Session.set('loopThisShit', true);
+                $('#loopThisShit').addClass('isBolded');
+            };
+        },
+        'click #shuffleThisShit': function() {
+
+        },
+        'click #playerControls>a:first-of-type': function() {
+            if (Session.get('currentlyPlayedVideo') !== 0) {
+                Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')-1);
+            };
+        },
+        'click #playerControls>a:last-of-type': function() {
+            if (Session.get('currentlyPlayedVideo')+1 !== Session.get('thisPlaylistData').songList.length) {
+                Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')+1);
+            };
         }
     })
 }

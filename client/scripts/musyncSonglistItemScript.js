@@ -63,7 +63,7 @@ Template.musyncSongListItem.events({
         e.stopPropagation();
         if(this.songPosition !== 0){
             Session.set('updatedShits', true);
-            Meteor.call("moveSongInPlaylist", { "videoId": this.videoId, "playlistId": Playlists.findOne().playlistId, "initalSongPosition": this.songPosition, "finalSongPosition": this.songPosition - 1 }, function(err) {
+            Meteor.call("moveSongInPlaylist", { "videoId": this.videoId, "playlistId": Router.current().params.playlistId, "initalSongPosition": this.songPosition, "finalSongPosition": this.songPosition - 1 }, function(err) {
                 Session.set('updatedShits', false);
             });
             Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')-1);
@@ -71,9 +71,9 @@ Template.musyncSongListItem.events({
     }, 
     'click .songlistMoveDown': function(e){
         e.stopPropagation();
-        if (this.songPosition+1 !== Router.current().data().playlist.songList.length) {
+        if (this.songPosition+1 !== Session.get('thisPlaylistData').songList.length) {
             Session.set('updatedShits', true);
-            Meteor.call("moveSongInPlaylist", { "videoId": this.videoId, "playlistId": Playlists.findOne().playlistId, "initalSongPosition": this.songPosition, "finalSongPosition": this.songPosition + 1 }, function(err) {
+            Meteor.call("moveSongInPlaylist", { "videoId": this.videoId, "playlistId": Router.current().params.playlistId, "initalSongPosition": this.songPosition, "finalSongPosition": this.songPosition + 1 }, function(err) {
                 setTimeout(function(){Session.set('updatedShits', true);Session.set('updatedShits', false);}, 1200);
             });
             Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')+1);
@@ -82,7 +82,7 @@ Template.musyncSongListItem.events({
     'click .songlistRemove': function(e){
         e.stopPropagation();
         Session.set('updatedShits', true);
-        Meteor.call("removeSongFromPlaylist", { "videoId": this.videoId, "songPosition": this.songPosition, "playlistId": Playlists.findOne().playlistId}, function(err) {
+        Meteor.call("removeSongFromPlaylist", { "videoId": this.videoId, "songPosition": this.songPosition, "playlistId": Router.current().params.playlistId}, function(err) {
             setTimeout(function(){Session.set('updatedShits', true);Session.set('updatedShits', false);}, 1200);
         });
     },

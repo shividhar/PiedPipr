@@ -9,3 +9,6 @@
 	     -o-transition: top .3s, opacity .3s!important;
 	        transition: top .3s, opacity .3s!important;
 }
+#bodyItem.isTempNoShow>*{
+	display: none;
+}
