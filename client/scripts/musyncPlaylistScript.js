@@ -217,6 +217,9 @@ if(Meteor.isClient){
         },
         thisPlaylistName: function() {
             return Session.get('thisPlaylistData') && Session.get('thisPlaylistData').playlistName? Session.get('thisPlaylistData').playlistName: 'Now playing';
+        },
+        thisIsAuthor: function() {
+            return Session.get('thisPlaylistData') && Session.get('thisPlaylistData').authorId == Meteor.userId();
         }
     });
     var searchKeyupTimeout;

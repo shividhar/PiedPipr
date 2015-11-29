@@ -184,6 +184,7 @@
 	float: right;
 	font-size: 6px;
 	font-style: normal;
+	padding-bottom: 12px;
 }
 #nowPlaying>h2>span>a{
 	cursor: pointer;

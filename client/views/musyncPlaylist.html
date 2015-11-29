@@ -24,7 +24,7 @@
     </div>
     <div id="playlistPanel">
         <div id="nowPlaying" class="songReadyShowThis">
-            <h2><p>{{thisPlaylistName}}</p> <span><a class="isBolded" id="loopThisShit">Loop</a> &bull; <a id="shuffleThisShit">Shuffle</a> &ndash; <a class="darkerOptions" id="openPlaylistSharingModal" onclick="Session.set('show-sharePlaylistModal', true);">Get code to share</a> &bull; <a class="darkerOptions" id="enableAutoAcceptingTrackRecomms">Auto accept track recommendations</a></span></h2>
+            <h2><p>{{thisPlaylistName}}</p> <span><a class="isBolded" id="loopThisShit">Loop</a> &bull; <a id="shuffleThisShit">Shuffle</a> &ndash; <a class="darkerOptions" id="openPlaylistSharingModal" onclick="Session.set('show-sharePlaylistModal', true);">Get code to share</a>{{#if thisIsAuthor}} &bull; <a class="darkerOptions" id="enableAutoAcceptingTrackRecomms">Auto accept track recommendations</a>{{/if}}</span></h2>
             <div id="player"></div>
         </div>
         <div id="playerControls" class="songReadyShowThis">

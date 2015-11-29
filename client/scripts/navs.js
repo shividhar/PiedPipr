@@ -1,4 +1,5 @@
 if (Meteor.isClient) {
+	var tempClearRequestsTimeout;
 	Template.navs.helpers({
 		currentUserHasViewedVideos: function () {
 			return Session.get('localVideosViewedData')? Session.get('localVideosViewedData').length: false;
@@ -23,11 +24,14 @@ if (Meteor.isClient) {
 						modalsToRet.push({'modalTemplateToUse': 'trackRecommendationChoiceModal'});
 					}
 					else{
-						for (var i = Session.get('thisPlaylistData').songListToApprove.length - 1; i >= 0; i--) {
-							var videoId = Session.get('thisPlaylistData').songListToApprove[i];
-							Meteor.call('addSongToPlaylist', {"videoId": videoId, playlistId: Router.current().params.playlistId});
-						};
-						Meteor.call('clearAllSongRequests', playlistId: Router.current().params.playlistId);
+						clearTimeout(tempClearRequestsTimeout);
+						tempClearRequestsTimeout = setInterval(function() {
+							for (var i = Session.get('thisPlaylistData').songListToApprove.length - 1; i >= 0; i--) {
+								var videoId = Session.get('thisPlaylistData').songListToApprove[i];
+								Meteor.call('addSongToPlaylist', {"videoId": videoId, playlistId: Router.current().params.playlistId});
+							};
+							Meteor.call('clearAllSongRequests', {playlistId: Router.current().params.playlistId});
+						}, 1200);
 					};
 				}
 				else{
