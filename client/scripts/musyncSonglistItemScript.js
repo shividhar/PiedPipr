@@ -49,7 +49,6 @@ Template.musyncSongListItem.helpers({
     },
     isCurrentVideoItem: function() {
         var a = Session.get('updatedShits');
-        console.log(this.songPosition, Session.get('currentlyPlayedVideo'), this.videoId)
         return ((this.songPosition == Session.get('currentlyPlayedVideo'))? 'isCurrentVideoItem': '');
     }
 });

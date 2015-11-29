@@ -22,13 +22,13 @@ if(Meteor.isClient){
             width: "520", 
 
             // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
-            videoId: "M7lc1UVf-VE", 
+            videoId: Session.get("firstSongId"), 
 
             // Events like ready, state change, 
             events: {
                 onReady: function (event) {
                     Session.set('updatedShits', true);
-                    iframeApiReady.set(true);
+                    iframeApiReady.set( true);
                     if (Router.current().data().playlist.songList.length) {
                         $('.songNotReadyShowThis').hide();
                         $('.songReadyShowThis').show();
