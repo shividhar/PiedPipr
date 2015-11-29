@@ -1,13 +1,17 @@
 <template name="trackRecommendationChoiceModal">
 	<div class="modalCont">
-		<div id="trackRecommendationChoice" class="choiceModal">
-			<p>An <i>Anonymous {{animalName}}</i> has requested to add track '{{trackTitle}}' by '{{trackAuthor}}' to this playlist.</p>
-			<div>
-				<a>Accept</a>
-				<span>Decline</span>
-			</div>
-			<div style="background-image:url('{{trackThumb}}')"></div>
-		</div>
+		{{#with latestSongToAdd}}
+			{{#with apiCall}}
+				<div id="trackRecommendationChoice" class="choiceModal">
+					<p>{{#if trackAuthor}}An <i>Anonymous {{animalName}}</i> has requested to add track '{{trackTitle}}' by '{{trackAuthor}}' to this playlist.{{else}}Loading...{{/if}}</p>
+					<div>
+						<a>Accept</a>
+						<span>Decline</span>
+					</div>
+					<div style="background-image:url('{{trackThumb}}')"></div>
+				</div>
+			{{/with}}
+		{{/with}}
 	</div>
 	<div id="trackRecommendationChoice" class="bgItem"></div>
 </template>

@@ -17,9 +17,18 @@ if (Meteor.isClient) {
 			else if(Session.get('show-sharePlaylistModal') && Router.current().params.playlistId) {
 				modalsToRet.push({'modalTemplateToUse': 'sharePlaylistModal'});
 			}
-			else if(Session.get('thereAreRequests') && Router.current().params.playlistId) {
-				if (Session.get('thereAreRequests').length) {
-					modalsToRet.push({'modalTemplateToUse': 'trackRecommendationChoiceModal'});
+			else if(Session.get('thisPlaylistData') && Session.get('thisPlaylistData').songListToApprove && Session.get('thisPlaylistData').authorId == Meteor.userId() && Router.current().params.playlistId) {
+				if (Session.get('thisPlaylistData').songListToApprove.length) {
+					if (!Session.get('enableAutoAcceptingTrackRecomms')) {
+						modalsToRet.push({'modalTemplateToUse': 'trackRecommendationChoiceModal'});
+					}
+					else{
+						for (var i = Session.get('thisPlaylistData').songListToApprove.length - 1; i >= 0; i--) {
+							var videoId = Session.get('thisPlaylistData').songListToApprove[i];
+							Meteor.call('addSongToPlaylist', {"videoId": videoId, playlistId: Router.current().params.playlistId});
+						};
+						Meteor.call('clearAllSongRequests', playlistId: Router.current().params.playlistId);
+					};
 				}
 				else{
 					$('body').attr('class', '');

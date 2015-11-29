@@ -1,10 +1,16 @@
 if (Meteor.isClient) {
 	Template.trackRecommendationChoiceModal.events({
-		'click #trackRecommendationChoice>a': function () {
-			
+		'click #trackRecommendationChoice>div:first-of-type>a': function () {
+			var videoId = Session.get('thisPlaylistData').songListToApprove[0];
+			Meteor.call('addSongToPlaylist', {"videoId": videoId, playlistId: Router.current().params.playlistId}, function(err) {
+				if (!err) {
+					Meteor.call('removeUnapprovedSong', {"videoId": videoId, playlistId: Router.current().params.playlistId, "songPosition": 0});
+				};
+			});
 		},
-		'click #trackRecommendationChoice>span': function () {
-			
+		'click #trackRecommendationChoice>div:first-of-type>span': function () {
+			var videoId = Session.get('thisPlaylistData').songListToApprove[0];
+			Meteor.call('removeUnapprovedSong', {"videoId": videoId, playlistId: Router.current().params.playlistId, "songPosition": 0});
 		}
 	});
 	Template.trackRecommendationChoiceModal.rendered = function () {
@@ -17,10 +23,38 @@ if (Meteor.isClient) {
 			return names[Math.floor((names.length-1)*Math.random())]
 		},
 		trackTitle: function() {
-			
+			return Session.get("songData" + this.valueOf())? Session.get("songData" + this.valueOf()).title: '';
 		},
 		trackAuthor: function() {
-			
-		}
+			return Session.get("songData" + this.valueOf())? Session.get("songData" + this.valueOf()).author: '';
+		},
+		trackThumb: function() {
+			return Session.get("songData" + this.valueOf())? Session.get("songData" + this.valueOf()).thumb: '';
+		},
+		apiCall: function(){
+	        if(dataApiReady.get()){
+	            var request = gapi.client.youtube.videos.list({part: 'snippet', id: this.valueOf(), maxResults: 1 });
+	            request.execute(
+	                function(response){
+	                    if(response.items && response.items.length > 0){
+	                        var data = Session.get("songData" + response.items[0].id);
+	                        if(!data){
+	                            data = {};
+	                        };
+	                        data.title = response.items[0].snippet.title;
+	                        data.author = response.items[0].snippet.channelTitle;
+	                        data.thumb = response.items[0].snippet.thumbnails.default.url;
+	                        Session.set("songData" + response.items[0].id, data);
+	                    };
+	                }
+	            );
+	            
+	        };
+	       
+	        return this;
+	    },
+	    latestSongToAdd: function() {
+	    	return Session.get('thisPlaylistData')? Session.get('thisPlaylistData').songListToApprove[0]: false;
+	    }
 	});
 };

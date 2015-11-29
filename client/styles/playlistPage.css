@@ -173,7 +173,8 @@
 }
 #nowPlaying>h2>p{
 	height: 24px;
-	width: 168px;
+	width: 500px;
+	margin-left: 12px;
 	float: left;
 	overflow: hidden;
 	white-space: nowrap;

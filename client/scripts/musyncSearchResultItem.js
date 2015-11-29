@@ -18,12 +18,17 @@ Template.musyncSearchResultItem.events({
         var videoId = this.videoId
         Meteor.call('addSongToPlaylist', {"videoId": videoId, playlistId: Router.current().params.playlistId}, function(err){
             if(!err){
-                var playlist = Playlists.findOne({"playlistId": Router.current().params.playlistId});
-                if(playlist){
-                    if(playlist.songList.length == 1){
-                        Session.set("firstSongId", playlist.songList[0])
+                if (Session.get('thisPlaylistData').authorId == Meteor.userId()) {
+                    var playlist = Playlists.findOne({"playlistId": Router.current().params.playlistId});
+                    if(playlist){
+                        if(playlist.songList.length == 1){
+                            Session.set("firstSongId", playlist.songList[0])
+                        }
                     }
                 }
+                else{
+                    alert("Track recommendation sent!");
+                };
             }
         });
     }

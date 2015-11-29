@@ -124,7 +124,7 @@ if(Meteor.isClient){
                 if (vidsData[i].playlistId == Router.current().params.playlistId) {
                     break;
                 }
-                else if(i==0){
+                else if(i==0 && Session.get('thisPlaylistData')){
                     vidsData = vidsData.slice(0, 5);
                     vidsData.push({
                         "playlistId": Router.current().params.playlistId,
@@ -216,7 +216,7 @@ if(Meteor.isClient){
             return dataApiReady;
         },
         thisPlaylistName: function() {
-            return Session.get('thisPlaylistData').playlistName? Session.get('thisPlaylistData').playlistName: 'Now playing';
+            return Session.get('thisPlaylistData') && Session.get('thisPlaylistData').playlistName? Session.get('thisPlaylistData').playlistName: 'Now playing';
         }
     });
     var searchKeyupTimeout;

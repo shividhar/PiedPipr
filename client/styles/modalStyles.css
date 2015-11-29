@@ -206,19 +206,21 @@
 	box-sizing: border-box;
 }
 .choiceModal>p{
-	font-size: 18px;
+	font-size: 13px;
 	margin-bottom: 24px;
+	line-height: 24px;
 	text-align: center;
 }
 .choiceModal>div:first-of-type{
 	width: 120px;
 	position: relative;
 	margin: 0 auto;
+	z-index: 5;
 }
 .choiceModal>div:last-of-type{
 	position: absolute;
-	height: 100%; width: 100%;
-	z-index: -1;
+	height: 100%; width: 100%; top: 0; left: 0;
+	z-index: 0;
 	opacity: 0.12;
 	border-radius: 3px;
 	background-position: center;background-repeat: no-repeat;
