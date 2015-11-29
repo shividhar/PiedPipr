@@ -9,6 +9,7 @@ if (Meteor.isClient) {
 	};
 	Template.container.rendered = function () {
 		$(window).resize(executeResizeFuncs);
+		executeResizeFuncs();
 	};
 	Template.container.destroyed = function () {
 		$(window).off('resize');

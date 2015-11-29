@@ -94,7 +94,7 @@
 /* textInputModal */
 .textInputModal{
 	position: relative;
-	height: 132px;
+	height: auto;
 	width: 360px;
 	margin: 0 auto;
 	margin-top: 60px;
@@ -102,6 +102,7 @@
 	border-radius: 3px;
 	box-shadow: 0px 3px 18px -6px black;
 	padding: 18px;
+	padding-bottom: 9px;
 	margin-bottom: 60px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;

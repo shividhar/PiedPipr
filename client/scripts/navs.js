@@ -14,6 +14,9 @@ if (Meteor.isClient) {
 			else if(Session.get('show-createPlaylistModal')) {
 				modalsToRet.push({'modalTemplateToUse': 'createPlaylistModal'});
 			}
+			else if(Session.get('show-sharePlaylistModal') && Router.current().params.playlistId) {
+				modalsToRet.push({'modalTemplateToUse': 'sharePlaylistModal'});
+			}
 			else if(Session.get('thereAreRequests') && Router.current().params.playlistId) {
 				if (Session.get('thereAreRequests').length) {
 					modalsToRet.push({'modalTemplateToUse': 'trackRecommendationChoiceModal'});

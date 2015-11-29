@@ -91,7 +91,7 @@ if(Meteor.isClient){
         };
         var self = this;
         self.autorun(function() {
-            if (Session.get('thisPlaylistData').songList) {
+            if (Session.get('thisPlaylistData') && Session.get('thisPlaylistData').songList) {
                 if (Session.get('thisPlaylistData').songList.length) {
                     $('.songNotReadyShowThis').hide();
                     $('.songReadyShowThis').show();
@@ -293,6 +293,16 @@ if(Meteor.isClient){
         'click #playerControls>a:last-of-type': function() {
             if (Session.get('currentlyPlayedVideo')+1 !== Session.get('thisPlaylistData').songList.length) {
                 Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')+1);
+            };
+        },
+        'click #enableAutoAcceptingTrackRecomms': function() {
+            if ($('#enableAutoAcceptingTrackRecomms').hasClass('isBolded')) {
+                Session.set('enableAutoAcceptingTrackRecomms', false);
+                $('#enableAutoAcceptingTrackRecomms').removeClass('isBolded').text('Auto accept track recommendations');
+            }
+            else{
+                Session.set('enableAutoAcceptingTrackRecomms', true);
+                $('#enableAutoAcceptingTrackRecomms').addClass('isBolded').text('Disable auto acceptting of track recommendations');
             };
         }
     })

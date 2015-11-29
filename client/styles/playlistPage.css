@@ -185,6 +185,23 @@
 #nowPlaying>h2>span>a.isBolded{
 	color: #FAFAFA;
 }
+
+a.darkerOptions{
+	color: #787878!important;
+	-webkit-transition: color .2s;
+	   -moz-transition: color .2s;
+	    -ms-transition: color .2s;
+	     -o-transition: color .2s;
+	        transition: color .2s;
+}
+a.darkerOptions:hover{
+	color: #BABFBE!important;
+}
+.darkerOptions.isBolded{
+	color: #BABFBE!important;
+}
+
+
 #playerControls{
 	height: 24px;
 	margin-bottom: 12px;
