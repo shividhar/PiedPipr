@@ -1,0 +1,13 @@
+<tempalte name="historyModal">
+	<div class="modalCont">
+		<div id="historyModal">
+			<p>Recently viewed playlists <span>Clear</span></p>
+			<ul>
+				{{#each recentPlaylists}}
+					<a href="/p/{{playlistId}}">{{playlistName}}<br><span>You visited this {{fromNowOfLastViewed}}</span></a>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+	<div id="historyModal" class="bgItem"></div>
+</tempalte>

@@ -118,6 +118,31 @@ if(Meteor.isClient){
         $('#playList').height($('#playlistPanel').height() - 324);
     };
     Template.musyncPlaylist.rendered = function () {
+        var vidsData = Session.get('localVideosViewedData');
+        if (vidsData) {
+            for (var i = vidsData.length - 1; i >= 0; i--) {
+                if (vidsData[i].playlistId == Router.current().params.playlistId) {
+                    break;
+                }
+                else if(i==0){
+                    vidsData = vidsData.slice(0, 5);
+                    vidsData.push({
+                        "playlistId": Router.current().params.playlistId,
+                        "playlistName": Session.get('thisPlaylistData').playlistName,
+                        "lastViewed": new Date()
+                    });
+                    Session.setPersistent('localVideosViewedData', vidsData);
+                };
+            };
+        }
+        else{
+            Session.setPersistent('localVideosViewedData', [{
+                "playlistId": Router.current().params.playlistId,
+                "playlistName": Session.get('thisPlaylistData').playlistName,
+                "lastViewed": new Date()
+            }]);
+        };
+
         Session.set('loopThisShit', true);
         $(window).scrollTop(0);
         $('#footer').show();

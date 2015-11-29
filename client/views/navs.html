@@ -1,10 +1,8 @@
 <template name="navs">
-	{{#if shouldPushDown}}
-		{{#each navAlerts}}
-			{{>navAlertTemplate}}
-		{{/each}}
-	{{/if}}
-	<div id="navs" class="{{shouldPushDown}}">
+	{{#each modals}}
+		{{>UI.dynamic template=modalTemplateToUse}}
+	{{/each}}
+	<div id="navs">
 		<div>
 			<a href="/"></a>
 			<ul>
