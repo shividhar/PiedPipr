@@ -118,6 +118,31 @@ if(Meteor.isClient){
         $('#playList').height($('#playlistPanel').height() - 324);
     };
     Template.musyncPlaylist.rendered = function () {
+        var vidsData = Session.get('localVideosViewedData');
+        if (vidsData) {
+            for (var i = vidsData.length - 1; i >= 0; i--) {
+                if (vidsData[i].playlistId == Router.current().params.playlistId) {
+                    break;
+                }
+                else if(i==0){
+                    vidsData = vidsData.slice(0, 5);
+                    vidsData.push({
+                        "playlistId": Router.current().params.playlistId,
+                        "playlistName": Session.get('thisPlaylistData').playlistName,
+                        "lastViewed": new Date()
+                    });
+                    Session.setPersistent('localVideosViewedData', vidsData);
+                };
+            };
+        }
+        else{
+            Session.setPersistent('localVideosViewedData', [{
+                "playlistId": Router.current().params.playlistId,
+                "playlistName": Session.get('thisPlaylistData').playlistName,
+                "lastViewed": new Date()
+            }]);
+        };
+
         Session.set('loopThisShit', true);
         $(window).scrollTop(0);
         $('#footer').show();
@@ -235,7 +260,30 @@ if(Meteor.isClient){
             };
         },
         'click #shuffleThisShit': function() {
+            var thisData = Session.get('thisPlaylistData');
+            var thisArr = thisData.songList;
+            if (thisArr.length) {
 
+                var currentVideoId = thisArr[Session.get('currentlyPlayedVideo')];
+
+                function shuffle(array) {
+                    var currentIndex = array.length, temporaryValue, randomIndex;
+
+                    while (0 !== currentIndex) {
+                        randomIndex = Math.floor(Math.random() * currentIndex);
+                        currentIndex -= 1;
+
+                        temporaryValue = array[currentIndex];
+                        array[currentIndex] = array[randomIndex];
+                        array[randomIndex] = temporaryValue;
+                    };
+                    return array;
+                };
+                thisData.songList = shuffle(thisArr);
+                var newIndexOfVideo = thisData.songList.indexOf(currentVideoId);
+                Session.set('currentlyPlayedVideo', newIndexOfVideo);
+                Session.set('thisPlaylistData', thisData);
+            };
         },
         'click #playerControls>a:first-of-type': function() {
             if (Session.get('currentlyPlayedVideo') !== 0) {
