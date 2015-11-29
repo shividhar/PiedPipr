@@ -214,6 +214,9 @@ if(Meteor.isClient){
         },
         dataApiReady: function() {
             return dataApiReady;
+        },
+        thisPlaylistName: function() {
+            return Session.get('thisPlaylistData').playlistName? Session.get('thisPlaylistData').playlistName: 'Now playing';
         }
     });
     var searchKeyupTimeout;
