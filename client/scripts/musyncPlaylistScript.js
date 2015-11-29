@@ -135,7 +135,7 @@ if(Meteor.isClient){
                 };
             };
         }
-        else{
+        else if(Session.get('thisPlaylistData')){
             Session.setPersistent('localVideosViewedData', [{
                 "playlistId": Router.current().params.playlistId,
                 "playlistName": Session.get('thisPlaylistData').playlistName,
