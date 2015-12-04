@@ -136,22 +136,11 @@
 }
 .splashPage>div:nth-of-type(2)>div:last-child{
 	background-position: bottom right;
-	animation-direction: alternate!important;
-	-webkit-animation-direction: alternate!important;
-
-
 	-webkit-animation: backgroundSpinReverse 36s linear infinite;
 	-moz-animation: backgroundSpinReverse 36s linear infinite;
 	-ms-animation: backgroundSpinReverse 36s linear infinite;
 	-o-animation: backgroundSpinReverse 36s linear infinite;
 	animation: backgroundSpinReverse 36s linear infinite;
-
-
-	-webkit-animation-name: backgroundSpinReverse;
-	-webkit-animation-duration: 36s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-direction: forwards;
 
 }
 .splashPage>div:nth-of-type(2)>div:last-of-type{
