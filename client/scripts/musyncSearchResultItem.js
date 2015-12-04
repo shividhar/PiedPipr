@@ -15,8 +15,16 @@ Template.musyncSearchResultItem.helpers({
 
 Template.musyncSearchResultItem.events({
     'click .songlistAdd': function(e) {
-        var videoId = this.videoId
+        var $this = $(e.currentTarget);
+        var videoId = this.videoId;
+        if ($this.children('span').is(':visible')) {
+            return;
+        }
+        else{
+            $this.children('span').show();
+        };
         Meteor.call('addSongToPlaylist', {"videoId": videoId, playlistId: Router.current().params.playlistId}, function(err){
+            $this.children('span').hide();
             if(!err){
                 if (Session.get('thisPlaylistData').authorId == Meteor.userId()) {
                     var playlist = Playlists.findOne({"playlistId": Router.current().params.playlistId});

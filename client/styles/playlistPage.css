@@ -137,6 +137,22 @@
 	stroke: #F7F7F7;
 }
 
+.songlistAdd>span{
+	display: block;
+	position: absolute;
+	height: 100%; width: 100%;
+	top: 0; left: 0;
+	z-index: 3;
+	cursor: default!important;
+	background-color: black;
+	opacity: 0.6;
+	background-image: url('/images/loader.gif');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 5%;
+	display: none;
+}
+
 
 
 
@@ -393,3 +409,5 @@ a.darkerOptions:hover{
 .songReadyShowThis{
 	display: none;
 }
+
+
