@@ -76,6 +76,7 @@ if(Meteor.isClient){
     };
     YT.load();
     Template.musyncPlaylist.created  = function(){
+
         Session.set('currentlyPlayedVideo', 0);
         // var tag = document.createElement('script');
         // tag.src = "https://www.youtube.com/iframe_api";
@@ -111,6 +112,31 @@ if(Meteor.isClient){
                 if (vids && dataApiReady && $('iframe')[0]) 
                     vids.stopVideo();
             };
+
+             var vidsData = Session.get('localVideosViewedData');
+            if (vidsData && vidsData.length) {
+                for (var i = vidsData.length - 1; i >= 0; i--) {
+                    if (vidsData[i].playlistId == Router.current().params.playlistId) {
+                        break;
+                    }
+                    else if(i==0 && Session.get('thisPlaylistData')){
+                        vidsData = vidsData.length < 12? vidsData: vidsData.slice(0, 10);
+                        vidsData.push({
+                            "playlistId": Router.current().params.playlistId,
+                            "playlistName": Session.get('thisPlaylistData').playlistName,
+                            "lastViewed": new Date()
+                        });
+                        Session.setPersistent('localVideosViewedData', vidsData);
+                    };
+                };
+            }
+            else if(Session.get('thisPlaylistData')){
+                Session.setPersistent('localVideosViewedData', [{
+                    "playlistId": Router.current().params.playlistId,
+                    "playlistName": Session.get('thisPlaylistData').playlistName,
+                    "lastViewed": new Date()
+                }]);
+            };
         });
     };
     function playListResizeFunc(winh, winw) {
@@ -118,30 +144,6 @@ if(Meteor.isClient){
         $('#playList').height($('#playlistPanel').height() - 324);
     };
     Template.musyncPlaylist.rendered = function () {
-        var vidsData = Session.get('localVideosViewedData');
-        if (vidsData && vidsData.length) {
-            for (var i = vidsData.length - 1; i >= 0; i--) {
-                if (vidsData[i].playlistId == Router.current().params.playlistId) {
-                    break;
-                }
-                else if(i==0 && Session.get('thisPlaylistData')){
-                    vidsData = vidsData.length < 12? vidsData: vidsData.slice(0, 10);
-                    vidsData.push({
-                        "playlistId": Router.current().params.playlistId,
-                        "playlistName": Session.get('thisPlaylistData').playlistName,
-                        "lastViewed": new Date()
-                    });
-                    Session.setPersistent('localVideosViewedData', vidsData);
-                };
-            };
-        }
-        else if(Session.get('thisPlaylistData')){
-            Session.setPersistent('localVideosViewedData', [{
-                "playlistId": Router.current().params.playlistId,
-                "playlistName": Session.get('thisPlaylistData').playlistName,
-                "lastViewed": new Date()
-            }]);
-        };
 
         Session.set('loopThisShit', true);
         $(window).scrollTop(0);
