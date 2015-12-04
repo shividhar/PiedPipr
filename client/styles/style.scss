@@ -1,0 +1,52 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #E9E9E9 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+$stable:                          blue !default;
+
+.roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.image-backing {
+  background: url('/splash.png');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+}
+
+.purple-backing {
+  background: #4F2683;
+  text-align: center;
+}
+
+.blue-backing {
+  background: #2F5F79;
+  text-align: center;
+}
+
+.green-backing {
+  background-color: #2E9F48;
+  text-align: center;
+  color: white
+}
+
+.blue-backing {
+  background: #007EAF;
+  text-align: center;
+}
