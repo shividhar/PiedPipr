@@ -125,7 +125,7 @@ if(Meteor.isClient){
                     break;
                 }
                 else if(i==0 && Session.get('thisPlaylistData')){
-                    vidsData = vidsData.slice(0, 5);
+                    vidsData = vidsData.length < 12? vidsData: vidsData.slice(0, 10);
                     vidsData.push({
                         "playlistId": Router.current().params.playlistId,
                         "playlistName": Session.get('thisPlaylistData').playlistName,

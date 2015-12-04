@@ -14,5 +14,9 @@ if (Meteor.isClient) {
 		};
 		executeResizeFuncs();
 	};
-
+	Template.footer.helpers({
+		currentYear: function () {
+			return moment().year();
+		}
+	});
 };

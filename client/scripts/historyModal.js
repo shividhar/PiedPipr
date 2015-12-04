@@ -1,7 +1,9 @@
 if (Meteor.isClient) {
 	Template.historyModal.helpers({
 		recentPlaylists: function () {
-			return Session.get('localVideosViewedData');
+			return Session.get('localVideosViewedData').sort(function(a, b) {
+				return (b.lastViewed - a.lastViewed);
+			});
 		},
 		fromNowOfLastViewed: function() {
 			return moment(this.lastViewed).fromNow();
@@ -22,5 +24,6 @@ if (Meteor.isClient) {
 	});
 	Template.historyModal.rendered = function () {
 		$('body').attr('class', 'stopScroll');
+		$('#historyModal.modalCont>div').fadeIn(300);
 	};
 };

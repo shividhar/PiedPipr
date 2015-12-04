@@ -156,14 +156,29 @@ p.centerOnteamPage{
 	word-wrap: break-word;
 	width: 50%;
 	float: left;
+	position: relative;
+	top: -12px;
+	opacity: 0;
+	-webkit-transition: top .9s, opacity .9s;
+	   -moz-transition: top .9s, opacity .9s;
+	    -ms-transition: top .9s, opacity .9s;
+	     -o-transition: top .9s, opacity .9s;
+	        transition: top .9s, opacity .9s;
 }
 
 .demo td h3{
-	font-size: 13px;
-	color: #BAD67E;
+	font-size: 18px;
+	color: #EBEBEB;
 	text-align: center;
-	margin-bottom: 48px;
+	margin-bottom: 12px;
 	margin-top: 24px;
+}
+.demo td p{
+	color: #BAD67E;
+	font-size: 12px;
+	margin-bottom: 48px;
+	text-align: center;
+	line-height: 24px;
 }
 
 .demo td img{

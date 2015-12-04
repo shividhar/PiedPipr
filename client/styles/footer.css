@@ -3,7 +3,7 @@
 	background-color: #161717;
 	height: 72px;
 	position: relative;
-	box-shadow: 0px -1px 6px -3px #1A1919;
+	box-shadow: 0px -6px 9px -9px black;
 	z-index: 4;
 }
 #footer>div{
@@ -42,7 +42,7 @@
 	float: right;
 	height: 48px;
 	line-height: 48px;
-	font-size: 13px;
+	font-size: 10px;
 	color: #7B877F;
 	text-align: right;
 }

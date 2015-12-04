@@ -1,9 +1,8 @@
 .splashPage>h1{
-	font-size: 36px;
+	font-size: 24px;
 	text-align: center;
 	margin-top: 72px;
-	margin-bottom: 36px;
-	text-decoration: underline;
+	margin-bottom: 48px;
 	text-shadow: 0px 1px 3px #111111;
 	color: #FAFAFA!important;
 }
@@ -11,7 +10,7 @@
 	width: 54px;
 	position: relative;
 	top: -12px;
-	margin-bottom: 12px;
+	margin-bottom: 18px;
 	display: inline-block;
 	box-shadow: 0px 3px 12px -6px #111111;
 }
@@ -101,14 +100,59 @@
 .splashPage>div:nth-of-type(2)>div{
 	position: fixed;
 	z-index: 0;
-	height: 100%; width: 100%;
-	top: 0; left: 0;
-	opacity: 0.12;
+	height: 300%; width: 300%;
+	top: -100%; left: -100%;
+	opacity: 0.18;
 	/*-webkit-transition: opacity 2.4s;
 	   -moz-transition: opacity 2.4s;
 	    -ms-transition: opacity 2.4s;
 	     -o-transition: opacity 2.4s;
 	        transition: opacity 2.4s;*/
+
+	background-image: url('/images/bg.jpg');
+	-webkit-background-size: 70%;
+	-moz-background-size: 70%;
+	-o-background-size: 70%;
+	background-size: 70%;
+	background-repeat: repeat;
+
+
+}
+.splashPage>div:nth-of-type(2)>div:first-child{
+	background-position: center;
+
+
+	-webkit-animation: backgroundSpin 48s linear infinite;
+	-moz-animation: backgroundSpin 48s linear infinite;
+	-ms-animation: backgroundSpin 48s linear infinite;
+	-o-animation: backgroundSpin 48s linear infinite;
+	animation: backgroundSpin 48s linear infinite;
+
+	-webkit-animation-name: backgroundSpinReverse;
+	-webkit-animation-duration: 36s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-direction: forwards;
+}
+.splashPage>div:nth-of-type(2)>div:last-child{
+	background-position: bottom right;
+	animation-direction: alternate!important;
+	-webkit-animation-direction: alternate!important;
+
+
+	-webkit-animation: backgroundSpinReverse 36s linear infinite;
+	-moz-animation: backgroundSpinReverse 36s linear infinite;
+	-ms-animation: backgroundSpinReverse 36s linear infinite;
+	-o-animation: backgroundSpinReverse 36s linear infinite;
+	animation: backgroundSpinReverse 36s linear infinite;
+
+
+	-webkit-animation-name: backgroundSpinReverse;
+	-webkit-animation-duration: 36s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-direction: forwards;
+
 }
 .splashPage>div:nth-of-type(2)>div:last-of-type{
 	z-index: -1;
@@ -195,4 +239,168 @@ background: -webkit-linear-gradient(left,  #004f20 61%,#006e2e 99%); /* Chrome10
 background: linear-gradient(to right,  #004f20 61%,#006e2e 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004f20', endColorstr='#006e2e',GradientType=0 ); /* IE6-9 */
 
+}
+
+
+
+
+
+
+@-webkit-keyframes backgroundSpin {
+	0% {
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	36% {
+		-webkit-transform:rotate(150deg);
+		transform:rotate(0deg);
+	}
+	100% {
+		-webkit-transform:rotate(360deg);
+		transform:rotate(0deg);
+	}
+}
+@-moz-keyframes backgroundSpin {
+	0% {
+		-moz-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	36% {
+		-moz-transform:rotate(150deg);
+		-webkit-transform:rotate(150deg);
+		transform:rotate(150deg);
+	}
+	100% {
+		-moz-transform:rotate(360deg);
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg);
+	}
+}
+@-ms-keyframes backgroundSpin {
+	0% {
+		-ms-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	36% {
+		-ms-transform:rotate(150deg);
+		-webkit-transform:rotate(150deg);
+		transform:rotate(150deg);
+	}
+	100% {
+		-ms-transform:rotate(360deg);
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg);
+	}
+}
+@-o-keyframes backgroundSpin {
+	0% {
+		-o-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	36% {
+		-o-transform:rotate(150deg);
+		-webkit-transform:rotate(150deg);
+		transform:rotate(150deg);
+	}
+	100% {
+		-o-transform:rotate(360deg);
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg);
+	}
+}
+@keyframes backgroundSpin {
+	0% {
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	36% {
+		-webkit-transform:rotate(150deg);
+		transform:rotate(150deg);
+	}
+	100% {
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg);
+	}
+}
+@-webkit-keyframes backgroundSpinReverse {
+	0% {
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg);
+	}
+	36% {
+		-webkit-transform:rotate(150deg);
+		transform:rotate(150deg);
+	}
+	100% {
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+}
+@-moz-keyframes backgroundSpinReverse {
+	0% {
+		-moz-transform:rotate(360deg);
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg);
+	}
+	36% {
+		-moz-transform:rotate(150deg);
+		-webkit-transform:rotate(150deg);
+		transform:rotate(150deg);
+	}
+	100% {
+		-moz-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+}
+@-ms-keyframes backgroundSpinReverse {
+	0% {
+		-ms-transform:rotate(360deg);
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg);
+	}
+	36% {
+		-ms-transform:rotate(150deg);
+		-webkit-transform:rotate(150deg);
+		transform:rotate(150deg);
+	}
+	100% {
+		-ms-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+}
+@-o-keyframes backgroundSpinReverse {
+	0% {
+		-o-transform:rotate(360deg);
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg);
+	}
+	36% {
+		-o-transform:rotate(150deg);
+		-webkit-transform:rotate(150deg);
+		transform:rotate(150deg);
+	}
+	100% {
+		-o-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+}
+@keyframes backgroundSpinReverse {
+	0% {
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg);
+	}
+	36% {
+		-webkit-transform:rotate(150deg);
+		transform:rotate(150deg);
+	}
+	100% {
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
 }

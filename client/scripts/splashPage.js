@@ -3,6 +3,9 @@ if (Meteor.isClient) {
   Template.splashPage.events({
     'click #createPlaylistSplashpage': function () {
       Session.set('show-createPlaylistModal', true);  
+    },
+    'click #joinPlaylistSplashpage': function() {
+      Session.set('show-joinPlaylistModal', true);
     }
   });
   Template.splashPage.destroyed = function () {
@@ -40,6 +43,6 @@ if (Meteor.isClient) {
       }, 2395);
       executeResizeFuncs();
     };
-    animateBg();
+    // animateBg();
   };
 }

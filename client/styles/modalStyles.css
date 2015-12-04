@@ -26,8 +26,8 @@ a.disabledButton{
 /*        history modal         */
 #historyModal.modalCont>div{
 	position: relative;
-	height: 300px;
-	width: 408px;
+	height: 480px;
+	width: 504px;
 	margin: 0 auto;
 	margin-top: 60px;
 	background-color: #FAFAFA;
@@ -35,6 +35,7 @@ a.disabledButton{
 	box-shadow: 0px 3px 18px -6px black;
 	padding: 18px;
 	margin-bottom: 60px;
+	display: none;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -45,7 +46,7 @@ a.disabledButton{
 	position: absolute;
 	top: 12px; right: 12px;
 	color: red;
-	font-size: 9px;
+	font-size: 11px;
 	cursor: pointer;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -55,7 +56,7 @@ a.disabledButton{
 	user-select: none;
 }
 #historyModal>div>p{
-	font-size: 13px;
+	font-size: 15px;
 	color: #595959;
 	position: relative;
 	-webkit-touch-callout: none;
@@ -66,13 +67,13 @@ a.disabledButton{
 	user-select: none;
 }
 #historyModal>div>p>span{
-	font-size: 9px;
+	font-size: 10px;
 	color: #BABABA;
 	cursor: pointer;
 }
 
 #historyModal>div>ul{
-	height: 240px;
+	height: 408px;
 	margin-top: 12px;
 	overflow: hidden;
 	overflow-y: scroll;
@@ -98,60 +99,74 @@ a.disabledButton{
 
 
 /* textInputModal */
+p.redText{
+	color: #8A523A!important;
+}
+input.redText{
+	border: 1px solid #8A523A!important;
+}
+
 .textInputModal{
 	position: relative;
 	height: auto;
-	width: 360px;
+	width: 408px;
 	margin: 0 auto;
 	margin-top: 60px;
 	background-color: #FAFAFA;
 	border-radius: 3px;
-	box-shadow: 0px 3px 18px -6px black;
+	box-shadow: 0px 3px 24px -6px black;
 	padding: 18px;
 	padding-bottom: 9px;
 	margin-bottom: 60px;
+	overflow: hidden;
+
+	display: none;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 .textInputModal>p{
-	font-size: 18px;
+	font-size: 22px;
 	color: #565656;
+	max-width: 100%;
+	margin-bottom: 6px;
+	line-height: 30px;
 }
 .textInputModal>input{
-	height: 24px;
+	height: 36px;
 	width: 94%;
 	outline: none;
 	padding-left: 4%;
 	margin-top: 12px;
-	margin-bottom: 9px;
-	border: 1px solid #F7F7F7;
+	margin-bottom: 18px;
+	border: 1px solid #F2F2ED;
 	background-color: #EBEBEB;
 	border-radius: 1px;
-	-webkit-transition: border .3s, background-color .3s;
-	   -moz-transition: border .3s, background-color .3s;
-	    -ms-transition: border .3s, background-color .3s;
-	     -o-transition: border .3s, background-color .3s;
-	        transition: border .3s, background-color .3s;
+	font-size: 18px;
+	-webkit-transition: border .6s, background-color .6s;
+	   -moz-transition: border .6s, background-color .6s;
+	    -ms-transition: border .6s, background-color .6s;
+	     -o-transition: border .6s, background-color .6s;
+	        transition: border .6s, background-color .6s;
 }
 .textInputModal>input:focus{
-	background-color: #FAFAFA;
-	border: 1px solid #989898;
+	background-color: #FAFAF7;
+	border: 1px solid #778520;
 }
 .textInputModal>a{
 	display: block;
 	float: left;
 	cursor: pointer;
-	height: 30px; line-height: 30px;
-	width: 66px;
+	height: 34px; line-height: 34px;
+	width: 70px;
 	text-align: center;
-
-	font-size: 9px;list-style-type: circle;
-	color: #111111;
-	background-color: #EBEBEB;
+	border: 1px solid #F2F2ED;
+	font-size: 11px;list-style-type: circle;
+	color: #888C6C;
+	background-color: #F2F2ED;
 	border-radius: 2px;
 
-	margin-right: 12px;
+	margin-right: 12px; margin-bottom: 12px;
 
 
 	-webkit-touch-callout: none;
@@ -161,15 +176,16 @@ a.disabledButton{
 	-ms-user-select: none;
 	user-select: none;
 
-	-webkit-transition: box-shadow .3s, background-color .3s;
-	   -moz-transition: box-shadow .3s, background-color .3s;
-	    -ms-transition: box-shadow .3s, background-color .3s;
-	     -o-transition: box-shadow .3s, background-color .3s;
-	        transition: box-shadow .3s, background-color .3s;
+	-webkit-transition: box-shadow .2s, background-color .2s, border .2s;
+	   -moz-transition: box-shadow .2s, background-color .2s, border .2s;
+	    -ms-transition: box-shadow .2s, background-color .2s, border .2s;
+	     -o-transition: box-shadow .2s, background-color .2s, border .2s;
+	        transition: box-shadow .2s, background-color .2s, border .2s;
 }
 .textInputModal>a:hover{
 	background-color: #F7F7F7;
 	box-shadow: 0px 1px 6px -3px #111111;
+	color: #778520;
 }
 .textInputModal>a:active{
 	color: #CCCCCC;
@@ -179,8 +195,9 @@ a.disabledButton{
 	cursor: pointer;
 	padding: 3px;
 	display: inline-block;
-	height: 30px; line-height: 24px;
-	font-size: 8px;
+	height: 36px; line-height: 30px;
+	font-size: 9px;
+	margin-left: 6px;
 	color: #787878;
 
 
@@ -190,6 +207,14 @@ a.disabledButton{
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	-webkit-transition: color .3s;
+	   -moz-transition: color .3s;
+	    -ms-transition: color .3s;
+	     -o-transition: color .3s;
+	        transition: color .3s;
+}
+.textInputModal>span:hover{
+	color: #CCCCCC;
 }
 
 
@@ -199,7 +224,7 @@ a.disabledButton{
 .choiceModal{
 	position: relative;
 	height: auto;
-	width: 360px;
+	width: 408px;
 	margin: 0 auto;
 	margin-top: 60px;
 	background-color: #FAFAFA;
@@ -212,13 +237,13 @@ a.disabledButton{
 	box-sizing: border-box;
 }
 .choiceModal>p{
-	font-size: 13px;
+	font-size: 14px;
 	margin-bottom: 24px;
 	line-height: 24px;
 	text-align: center;
 }
 .choiceModal>div:first-of-type{
-	width: 120px;
+	width: 136px;
 	position: relative;
 	margin: 0 auto;
 	z-index: 5;
@@ -239,12 +264,13 @@ a.disabledButton{
 	display: block;
 	float: left;
 	cursor: pointer;
-	height: 30px; line-height: 30px;
-	width: 66px;
+	height: 34px; line-height: 34px;
+	width: 70px;
 	text-align: center;
 
-	font-size: 9px;list-style-type: circle;
+	font-size: 11px;list-style-type: circle;
 	color: #111111;
+	border: 1px solid #787878;
 	background-color: #EBEBEB;
 	border-radius: 2px;
 
@@ -276,8 +302,8 @@ a.disabledButton{
 	cursor: pointer;
 	padding: 3px;
 	display: inline-block;
-	height: 30px; line-height: 24px;
-	font-size: 8px;
+	height: 36px; line-height: 30px;
+	font-size: 10px;
 	color: #787878;
 
 	
@@ -287,4 +313,14 @@ a.disabledButton{
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+
+
+
+#sharePlaylist>img{
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	margin-bottom: 24px;
 }

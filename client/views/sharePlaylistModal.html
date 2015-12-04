@@ -1,10 +1,12 @@
 <template name="sharePlaylistModal">
 	<div class="modalCont">
 		<div id="sharePlaylist" class="textInputModal">
-			<p>Just send the link to this page, or share the following playlist code:</p>
-			<input type="text" placeholder="ex. Gettin Westurntt" value="{{thisPlaylistCode}}">
-			<a>Done</a>
-			<span><!-- Cancel --></span>
+			<p style="text-align:center;">Just send the link to this page, or share the following playlist code:</p>
+			<input type="text" placeholder="ex. Gettin Westurntt" style="text-align:center;padding-left:0!important;width:100%;" value="{{thisPlaylistCode}}">
+			<p style="font-size:13px;text-align:center;">Or scan QR code with the <a href="/app" target="_blank" class="lightText">app</a></p>
+			<img src="{{thisPlaylistQr}}">
+			<a style="position:relative;margin:0 auto;float:none;">Done</a>
+			<span style="height:0px;"><!-- Cancel --></span>
 		</div>
 	</div>
 	<div id="sharePlaylist" class="bgItem"></div>
