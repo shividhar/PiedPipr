@@ -1,0 +1,147 @@
+#MsearchPanel{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background-color: rgba(36, 36, 36, 0.9);
+	z-index: 5;
+	display: none;
+}
+#MsearchArea{
+	height: 48px;
+	width: 100%;
+	background-color: white;
+	overflow: hidden;
+	box-shadow: 0px 3px 9px -6px #787878;
+	position: relative;
+	z-index: 1;
+}
+#MsearchArea>img{
+	position: relative;
+	float: right;
+	height: 48px;
+	cursor: pointer;
+}
+#MsearchArea>input{
+	height: 48px;
+	width: calc(100% - 48px - 48px - 9px);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	outline: none; border: none;
+	font-size: 11px;
+	float: left;
+	padding-left: 9px;
+}
+#MsearchArea>span{
+	display: block;
+	height: 48px; line-height: 48px;
+	width: 48px; text-align: center;
+	float: right;
+	cursor: pointer;
+	color: red;
+	background-color: #F7F7F7;
+}
+#MsearchResults{
+	width: 100%;
+	height: calc(100% - 48px);
+	position: relative;
+	z-index: 0;
+	background-color: #F7F7F7;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+#MsearchResults>p{
+	font-size: 18px;
+	text-align: center;
+	margin-top: 24px;
+	margin-bottom: 48px;
+}
+
+
+
+
+#MsearchResults>div{
+	cursor: pointer;
+	padding-top: 12px; padding-bottom: 12px;
+	position: relative;
+	height: 120px;
+}
+#MsearchResults>div>p{
+	font-size: 13px;
+	width: 90%; 
+	margin-left: 5%;
+	line-height: 18px;
+	padding-bottom: 12px;
+	color: #424242;
+	z-index: 1;
+	max-height: 42px;
+	margin-top: 24px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+#MsearchResults>div>p>span{
+	color: #787878;
+	font-size: 11px;
+}
+#MsearchResults>div>div{
+	width: 100%;
+	height: 100%;
+	top: 0; left: 0;
+	display: block;
+	position: absolute;
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	z-index: 0;
+	opacity: 0.24;
+	-webkit-transition: opacity .2s;
+	   -moz-transition: opacity .2s;
+	    -ms-transition: opacity .2s;
+	     -o-transition: opacity .2s;
+	        transition: opacity .2s;
+}
+#MsearchResults>div:hover>div{
+	opacity: 0.12;
+}
+#MsearchResults>div>svg{
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	-webkit-transition: -webkit-transform .2s;
+	   -moz-transition: -moz-transform .2s;
+	    -ms-transition: -ms-transform .2s;
+	     -o-transition: -o-transform .2s;
+	        transition: transform .2s;
+}
+#MsearchResults>div:active>svg{
+	-webkit-transform: rotate(180deg);
+	   -moz-transform: rotate(180deg);
+	    -ms-transform: rotate(180deg);
+	     -o-transform: rotate(180deg);
+	        transform: rotate(180deg);
+}
+#MsearchResults>div>svg>line{
+	stroke-width:2px;
+	stroke: #424242;
+}
+
+.songlistAdd>span{
+	display: block;
+	position: absolute;
+	height: 100%; width: 100%;
+	top: 0; left: 0;
+	z-index: 3;
+	cursor: default!important;
+	background-color: black;
+	opacity: 0.6;
+	background-image: url('/images/loader.gif');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 5%;
+	display: none;
+}

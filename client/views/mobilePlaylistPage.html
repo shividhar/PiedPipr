@@ -1,0 +1,42 @@
+<template name="mobilePlaylistPage">
+	<div id="MsearchPanel">
+        <div id="MsearchArea">
+            <input type="text" name="searchQueryInput" placeholder="Search YouTube for a video to add..." tabindex="1">
+            <span>x</span>
+            <img src="https://s3-us-west-2.amazonaws.com/piedpipr/images/searchIco.png">
+        </div>
+        <div id="MsearchResults">
+            {{#if searchQLen}}
+                {{#if searchResults}}
+                    {{#each searchResults}}
+                        {{> musyncSearchResultItem}}
+                    {{/each}}
+                {{else}}
+                    <p>No results</p>
+                {{/if}}
+            {{else}}
+                {{#if dataApiReady}}
+                    <p>...</p> 
+                {{else}}
+                    <p>Preparing searcher...</p>
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+    <div id="MplaylistPanel">
+        <div id="MnowPlaying">
+            <h2><p>{{thisPlaylistName}}</p> <span><a class="isBolded" id="MloopThisShit">Loop</a> &bull; <a id="MshuffleThisShit">Shuffle</a> &ndash; <a class="MdarkerOptions" id="MopenPlaylistSharingModal" onclick="Session.set('show-MsharePlaylistModal', true);">Get code to share</a>{{#if thisIsAuthor}} &bull; <a class="MdarkerOptions" id="MenableAutoAcceptingTrackRecomms">Auto accept track recommendations</a>{{/if}}</span></h2>
+            <div id="Mplayer"></div>
+        </div>
+        <div id="MplayerControls">
+            <a>Previous</a>
+            <p>Add track</p>
+            <a>Next</a>
+        </div>
+        <div id="MplayList">
+            {{#each songList}}
+                {{> musyncSongListItem}}
+            {{/each}}
+        </div>
+    </div>
+</template>

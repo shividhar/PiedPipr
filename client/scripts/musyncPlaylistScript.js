@@ -11,68 +11,90 @@ if(Meteor.isClient){
         dataApiReady.set(true);
     };
     
-    // YouTube API will call onYouTubeIframeAPIReady() when API ready.
-    // Make sure it's a global variable.
     onYouTubeIframeAPIReady = function (){
-        // New Video Player, the first argument is the id of the div.
-        // Make sure it's a global variable.
-        player = new YT.Player("player", {
+        if (!Meteor.Device.isMobile) {
+            Mplayer = new YT.Player("Mplayer", {
 
-            height: "240", 
-            width: "520", 
+                height: "240", 
+                width: $(window).width(), 
 
-            // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
-            videoId: Session.get("firstSongId"), 
 
-            // Events like ready, state change, 
-            events: {
-                onReady: function (event) {
-                    Session.set('updatedShits', true);
-                    iframeApiReady.set(true);
-                    if (Session.get('thisPlaylistData').songList.length) {
-                        $('.songNotReadyShowThis').hide();
-                        $('.songReadyShowThis').show();
-                        event.target.playVideo();
-                    };
-                    Session.set('updatedShits', false);
-                },
-                onStateChange: function(event){
-                    Session.set('updatedShits', true);
-                    if(event.data == 0){
-                        if(Session.get('currentlyPlayedVideo') + 1 < Session.get('thisPlaylistData').songList.length){
-                            Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')+1);
+                videoId: Session.get("firstSongId"), 
+
+                events: {
+                    onReady: function (event) {
+                        MiframeApiReady.set(true);
+                    },
+                    onStateChange: function(event){
+                        if(event.data == 0){
+                            Mplayer.loadVideoById(Session.get('thisPlaylistData').songList[Session.get('currentlyPlayedVideo')]);
+
                         }
-                        else if(Session.get('loopThisShit')){
-                            Session.set('currentlyPlayedVideo', 0);
-                        }
-                        else{
-                            var vids = $('#player').get(0);
-                            if(vids && dataApiReady && $('iframe')[0])
-                                vids.stopVideo();
-                            return;
-                        };
-                        player.loadVideoById(Session.get('thisPlaylistData').songList[Session.get('currentlyPlayedVideo')]);
-
-
-                        if (Session.get('thisPlaylistData').songList.length == 0) {
-                            player.stopVideo();
-                            $('.songNotReadyShowThis').show();
-                            $('.songReadyShowThis').hide();
-                            var vids = $('#player').get(0);
-                            if(vids && dataApiReady && $('iframe')[0])
-                                vids.stopVideo();
-                        }
-                        else{
-                            $('.songNotReadyShowThis').hide();
-                            $('.songReadyShowThis').show();
-                        };
                     }
-                    Session.set('updatedShits', false);
+
                 }
 
-            }
+            });
+        }
+        else{
+            player = new YT.Player("player", {
 
-        });
+                height: "240", 
+                width: "520", 
+
+                // videoId is the "v" in URL (ex: http://www.youtube.com/watch?v=LdH1hSWGFGU, videoId = "LdH1hSWGFGU")
+                videoId: Session.get("firstSongId"), 
+
+                // Events like ready, state change, 
+                events: {
+                    onReady: function (event) {
+                        Session.set('updatedShits', true);
+                        iframeApiReady.set(true);
+                        if (Session.get('thisPlaylistData').songList.length) {
+                            $('.songNotReadyShowThis').hide();
+                            $('.songReadyShowThis').show();
+                            event.target.playVideo();
+                        };
+                        Session.set('updatedShits', false);
+                    },
+                    onStateChange: function(event){
+                        Session.set('updatedShits', true);
+                        if(event.data == 0){
+                            if(Session.get('currentlyPlayedVideo') + 1 < Session.get('thisPlaylistData').songList.length){
+                                Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')+1);
+                            }
+                            else if(Session.get('loopThisShit')){
+                                Session.set('currentlyPlayedVideo', 0);
+                            }
+                            else{
+                                var vids = $('#player').get(0);
+                                if(vids && dataApiReady && $('iframe')[0])
+                                    vids.stopVideo();
+                                return;
+                            };
+                            player.loadVideoById(Session.get('thisPlaylistData').songList[Session.get('currentlyPlayedVideo')]);
+
+
+                            if (Session.get('thisPlaylistData').songList.length == 0) {
+                                player.stopVideo();
+                                $('.songNotReadyShowThis').show();
+                                $('.songReadyShowThis').hide();
+                                var vids = $('#player').get(0);
+                                if(vids && dataApiReady && $('iframe')[0])
+                                    vids.stopVideo();
+                            }
+                            else{
+                                $('.songNotReadyShowThis').hide();
+                                $('.songReadyShowThis').show();
+                            };
+                        }
+                        Session.set('updatedShits', false);
+                    }
+
+                }
+
+            });
+        };
     };
     YT.load();
     Template.musyncPlaylist.created  = function(){

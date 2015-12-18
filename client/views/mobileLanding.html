@@ -3,15 +3,29 @@
 		<link rel="icon" href="/favicon.ico">
 		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	</head>
+	<div id="overflowMobile">
+		<h2>Enter code of playlist you'd like to join:</h2>
+		<input type="text" placeholder="Ex. RY3472">
+		<a>Continue</a>
+		<span>Cancel</span>
+	</div>
 	<div id="headerMobile">
 		<h1><img src="https://s3-us-west-2.amazonaws.com/piedpipr/images/logo.jpg"><br>PiedPipr</h1>
 		<div style="background-image:url('/images/iPhoneAppImg.png')"></div>
 	</div>
 	<div id="bodyMobile">
-		<h2>Welcome.</h2>
+		<h2>Make temporary playlists for you and your friends to use &ndash; in sync!</h2>
+		<hr>
+		<br>
 		<div>
-			<a href="" onclick="alert('Waiting store approval!');" rel="nofollow"><img src="/images/googel-play-badge.png"></a>
-			<a href="" onclick="alert('Waiting store approval!');" rel="nofollow"><img src="/images/appStoreBadge.png"></a>
+			<a href="" id="createPlaylistMobile">Create playlist</a>
+			<a href="" id="joinPlaylistMobile">Join playlist</a>
+		</div>
+		<hr>
+		<br><br>
+		<div>
+			<a href="" onclick="alert('In the process of approval!');" rel="nofollow"><img src="/images/googel-play-badge.png"></a>
+			<a href="" onclick="alert('In the process of approval!');" rel="nofollow"><img src="/images/appStoreBadge.png"></a>
 		</div>
 		<hr>
 		<h2>What is PiedPipr?</h2>
@@ -24,7 +38,7 @@
 	        <li>Generating Youtube playlists on the fly</li>
 	        <li>Letting other users request music in your playlist through the sharing of a simple link</li>
 	        <li>Making the world a better place</li>
-	        <li>Infatrodes</li>
+	        <li>Infatrodes...WHAT THE HELL IS AN INFATRODE!??!1!!</li>
 	    </ul>
 		<hr>
 	    <a href="/" onclick="Meteor.Device.preferDesktop();">Use desktop site</a>

@@ -128,7 +128,7 @@
 	-o-animation: backgroundSpin 48s linear infinite;
 	animation: backgroundSpin 48s linear infinite;
 
-	-webkit-animation-name: backgroundSpinReverse;
+	-webkit-animation-name: backgroundSpin;
 	-webkit-animation-duration: 36s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-timing-function: linear;
