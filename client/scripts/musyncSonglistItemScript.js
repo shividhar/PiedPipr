@@ -2,13 +2,13 @@ Template.musyncSongListItem.helpers({
     apiCall : function(){
         Session.set("songData" + this.videoId, { title: "", author: "", thumb: "", songPosition: this.songPosition });
         
-        if(dataApiReady.get())
+        if(dataApiReady.get() || MdataApiReady.get())
         {
             var request = gapi.client.youtube.videos.list({part: 'snippet', id: this.videoId, maxResults: 1 });
             request.execute(
                 function(response)
                 {
-                    if(response.items.length > 0)
+                    if(response.items && response.items.length > 0)
                     {
                         var data = Session.get("songData" + response.items[0].id);
                         if(!data){
@@ -100,6 +100,12 @@ Template.musyncSongListItem.events({
         if(iframeApiReady.get()){
             Session.set('updatedShits', true);
             player.loadVideoById(this.videoId);
+            Session.set('currentlyPlayedVideo', this.songPosition);
+            Session.set('updatedShits', false);
+        }
+        else if(MiframeApiReady.get()){
+            Session.set('updatedShits', true);
+            Mplayer.loadVideoById(this.videoId);
             Session.set('currentlyPlayedVideo', this.songPosition);
             Session.set('updatedShits', false);
         }

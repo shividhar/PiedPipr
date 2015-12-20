@@ -4,6 +4,10 @@ if(Meteor.isClient){
     player = undefined;
     dataApiReady = new ReactiveVar(false);
     iframeApiReady = new ReactiveVar(false);
+    
+    MdataApiReady = new ReactiveVar(false)
+    MiframeApiReady = new ReactiveVar(false)
+
     // currentlyPlayedVideo = 0;
     var queuedVideo;
     
@@ -12,7 +16,7 @@ if(Meteor.isClient){
     };
     
     onYouTubeIframeAPIReady = function (){
-        if (!Meteor.Device.isMobile) {
+        if (Meteor.Device.isPhone()) {
             Mplayer = new YT.Player("Mplayer", {
 
                 height: "240", 
@@ -26,10 +30,18 @@ if(Meteor.isClient){
                         MiframeApiReady.set(true);
                     },
                     onStateChange: function(event){
+                        Session.set('updatedShits', true);
                         if(event.data == 0){
-                            Mplayer.loadVideoById(Session.get('thisPlaylistData').songList[Session.get('currentlyPlayedVideo')]);
+                            if(Session.get('currentlyPlayedVideo') + 1 < Session.get('thisPlaylistData').songList.length)
+                                Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')+1);
+                            else if(Session.get('loopThisShit'))
+                                Session.set('currentlyPlayedVideo', 0);
+                            else
+                                return;
 
+                            Mplayer.loadVideoById(Session.get('thisPlaylistData').songList[Session.get('currentlyPlayedVideo')]);
                         }
+                        Session.set('updatedShits', false);
                     }
 
                 }
@@ -97,7 +109,7 @@ if(Meteor.isClient){
         };
     };
     YT.load();
-    Template.musyncPlaylist.created  = function(){
+    Template.musyncPlaylist.created = function(){
 
         Session.set('currentlyPlayedVideo', 0);
         // var tag = document.createElement('script');

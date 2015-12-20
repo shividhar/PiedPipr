@@ -37,6 +37,11 @@ Template.musyncSearchResultItem.events({
                 else{
                     alert("Track recommendation sent!");
                 };
+                if (Meteor.Device.isPhone()) {
+                    $('#MsearchPanel').hide(); $('#MsearchArea>input').val('');
+                    Session.set('results', []);
+                    Session.set('searchQ', '');
+                };
             }
         });
     }

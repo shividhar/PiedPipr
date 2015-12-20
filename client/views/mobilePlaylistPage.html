@@ -1,4 +1,12 @@
 <template name="mobilePlaylistPage">
+	<div id="MshareCodeOverflow">
+		<span>Close</span>
+		<h2>Share playlist</h2>
+		<p>Code:</p>
+		<input type="placeholder" value="{{thisPlaylistId}}">
+		<p>Qr Code:</p>
+		<img src="">
+	</div>
 	<div id="MsearchPanel">
         <div id="MsearchArea">
             <input type="text" name="searchQueryInput" placeholder="Search YouTube for a video to add..." tabindex="1">
@@ -25,7 +33,15 @@
     </div>
     <div id="MplaylistPanel">
         <div id="MnowPlaying">
-            <h2><p>{{thisPlaylistName}}</p> <span><a class="isBolded" id="MloopThisShit">Loop</a> &bull; <a id="MshuffleThisShit">Shuffle</a> &ndash; <a class="MdarkerOptions" id="MopenPlaylistSharingModal" onclick="Session.set('show-MsharePlaylistModal', true);">Get code to share</a>{{#if thisIsAuthor}} &bull; <a class="MdarkerOptions" id="MenableAutoAcceptingTrackRecomms">Auto accept track recommendations</a>{{/if}}</span></h2>
+            <h2>
+            	<p><a href="/mobile">&lt; Home |</a> {{thisPlaylistName}}</p>
+            	<span>
+            		<a id="MloopThisShit">Loop</a> 
+                    <a id="MshuffleThisShit">Shuffle</a> 
+                    <a class="MdarkerOptions" id="MopenPlaylistSharingModal">Get code to share</a>
+            		{{#if thisIsAuthor}} <a class="MdarkerOptions" id="MenableAutoAcceptingTrackRecomms">Auto accept track recommendations</a>{{/if}}
+            	</span>
+            </h2>
             <div id="Mplayer"></div>
         </div>
         <div id="MplayerControls">

@@ -145,3 +145,174 @@
 	background-size: 5%;
 	display: none;
 }
+
+
+#MnowPlaying{
+	width: 100%;
+	height: 444px;
+
+}
+
+#MnowPlaying>h2{
+	width: 100%;
+	height: 198px;
+	padding: 24px;
+	padding-bottom: 0px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#MnowPlaying>h2>p{
+	font-size: 24px;
+	color: #F7F7F7;
+	margin-bottom: 12px;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;text-overflow: ellipsis;
+}
+#MnowPlaying>h2>p>a{
+	text-decoration: none;
+	color: #A6C75F;
+	font-size: 13px;
+}
+#MnowPlaying>h2>span{
+	display: block;
+	font-size: 7px;
+	color: #CCCCCC;
+}
+#MnowPlaying>h2>span>a{
+	height: 36px; line-height: 36px;
+}
+#MnowPlaying>h2>span>a:not(.MdarkerOptions){
+	font-size: 11px;
+	color: #DEDEDE;
+	background-color: #424242;
+	margin: 6px;
+	display: inline-block;
+	padding: 6px;
+	cursor: pointer;
+	overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+#MnowPlaying>h2>span>a.MdarkerOptions{
+	font-size: 10px;
+	background-color: #222222;
+	color: #787878;
+	display: inline-block;
+	padding: 6px;
+	margin: 6px;
+	cursor: pointer;
+}
+#MnowPlaying>h2>span .isBolded{
+	background-color: #DEDEDE!important;
+	color: #424242!important;
+}
+
+
+#MplayerControls{
+	height: 48px;
+}
+#MplayerControls>a{
+	display: block;
+	width: 33%; text-align: center;
+	height: 48px; line-height: 48px;
+	font-size: 10px;
+	background-color: #111111;
+	color: #dedede;
+}
+#MplayerControls>a:first-of-type{
+	float: left;
+}
+#MplayerControls>a:last-of-type{
+	float: right;
+}
+#MplayerControls>p{
+	display: block;width: 34%;text-align: center;
+	height: 48px; line-height: 48px;
+	float: left;
+	font-size: 12px;
+	color: #A6C75F;
+	background-color: #424242;
+}
+
+#MplayList .songlistButton{
+	margin-top: 0px; margin-bottom: 0px;
+	height: 96px;
+}
+#MplayList .songlistButton>p{
+	width: calc(100% - 138px - 9px - 24px);
+	float: left;
+}
+
+#MplayList .songlistButton>div:last-child{
+	width: calc(100% - 138px);
+	float: left;	
+}
+#MplayList .songlistButton>div:last-child>a:not(:last-of-type){
+	font-size: 7px;
+}
+
+
+#MshareCodeOverflow{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	overflow: hidden; overflow-y: scroll;
+	background-color: rgba(36, 36, 36, 0.9);
+	z-index: 5;
+	display: none;
+}
+#MshareCodeOverflow>span{
+	color: #E8C6BC;
+	display: block;
+	text-align: center;
+	margin-top: 24px;
+	cursor: pointer;
+	font-size: 12px;
+}
+#MshareCodeOverflow>h2{
+	text-align: center;
+	width: 90%;
+	margin: 24px;
+	margin-left: 5%; margin-right: 0;
+	font-size: 24px;
+	color: #CCCCCC;
+}
+#MshareCodeOverflow>p{
+	width: 90%;
+	margin-left: 5%;
+	margin-bottom: 12px;
+	text-decoration: underline;
+	font-size: 18px;
+	color: #F7F7F7;
+	text-align: center;
+}
+#MshareCodeOverflow>input{
+	width: 80%; display: block;
+	position: relative;
+	margin: 0 auto;
+	height: 48px;
+	text-align: center;
+	font-size: 24px;
+	margin-bottom: 24px;
+	border: 2px solid #4A632C;
+	outline: none;
+}
+#MshareCodeOverflow>img{
+	width: 80%;
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	margin-bottom: 48px;
+}
+
+
+#MopenPlaylistSharingModal{
+	width: 72px;
+	overflow: hidden;white-space: nowrap;text-overflow:ellipsis;
+}
+#MenableAutoAcceptingTrackRecomms{
+	height: 36px;
+	overflow: hidden;white-space: nowrap;text-overflow:ellipsis;
+	width: 186px;
+	text-align: center;
+}
