@@ -1,3 +1,8 @@
+
+
+/*--------------------------/team route--------------------------*/
+
+
 .teamPage>h1{
 	font-size: 36px;
 	text-align: center;
@@ -143,6 +148,10 @@ p.centerOnteamPage{
 	color: white;
 }
 
+
+
+/*--------------------------don't know why this code is styled like this, but it styles some of the tabling so i'll leave it here--------------------------*/
+
 .demo {
 	margin: auto;
 	border-style: none;
@@ -195,41 +204,4 @@ p.centerOnteamPage{
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-}
-
-div.firstBg{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#006e2e+0,004f1b+21 */
-background: #006e2e; /* Old browsers */
-background: -moz-linear-gradient(left,  #006e2e 0%, #004f1b 50%, #006e2e 99%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left,  #006e2e 0%,#004f1b 50%, #006e2e 99%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right,  #006e2e 0%,#004f1b 50%, #006e2e 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#006e2e', endColorstr='#004f1b',GradientType=0 ); /* IE6-9 */
-
-}
-div.secondBg{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#007c16+9,004f1b+61 */
-background: #004f20; /* Old browsers */
-background: -moz-linear-gradient(left,  #065C29 9%, #004f1b 61%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left,  #065C29 9%,#004f1b 61%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right,  #065C29 9%,#004f1b 61%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#065C29', endColorstr='#004f1b',GradientType=1 ); /* IE6-9 */
-
-}
-div.thirdBg{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#004f20+1,006e2e+47,004f1b+99 */
-background: #004f20; /* Old browsers */
-background: -moz-linear-gradient(left,  #004f20 24%, #07612C 50%, #004f20 99%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left,  #004f20 24%,#07612C 50%, #004f20 99%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right,  #004f20 24%,#07612C 50%, #004f20 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004f20', endColorstr='#004f1b',GradientType=0 ); /* IE6-9 */
-
-}
-div.fourthBg{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#004f20+18,006e2e+59 */
-background: #006e2e; /* Old browsers */
-background: -moz-linear-gradient(left,  #004f20 61%, #006e2e 99%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left,  #004f20 61%,#006e2e 99%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right,  #004f20 61%,#006e2e 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#004f20', endColorstr='#006e2e',GradientType=0 ); /* IE6-9 */
-
 }

@@ -1,4 +1,11 @@
+
+
+
+//this is the template for the list of songs in the playlist
+
 Template.musyncSongListItem.helpers({
+
+    // api call for getting song data
     apiCall : function(){
         Session.set("songData" + this.videoId, { title: "", author: "", thumb: "", songPosition: this.songPosition });
         
@@ -26,9 +33,9 @@ Template.musyncSongListItem.helpers({
         }
        
         return this;
-        //Session.set("song" + this.songPosition, this);
-        //return Session.get("song" + this.songPosition);
-    }, 
+    },
+
+    // check if current user is authoer; if so the user will have access to buttons that modify the playlist
     currentUserIsAuthor: function() {
         var playlist = Playlists.findOne({"playlistId": Router.current().params.playlistId});
         if(playlist){
@@ -41,22 +48,31 @@ Template.musyncSongListItem.helpers({
     },
     videoId : function() {
         return this.videoId;
-    }, 
+    },
     songPosition : function() {
         return this.songPosition;
     }, 
     songOriginPlaylist : function(){
         return Router.current().params.playlistId;
     }, 
-    songName : function(){
+
+    //video title
+    songName: function(){
         return Session.get("songData" + this.videoId).title;
-    }, 
+    },
+
+    //video thumbnail
     songThumb : function(){
         return Session.get("songData" + this.videoId).thumb;
-    }, 
+    },
+
+
+    //video author
     songAuthor : function(){
         return Session.get("songData" + this.videoId).author;
     },
+
+    //see if this video is currently being played
     isCurrentVideoItem: function() {
         var a = Session.get('updatedShits');
         return ((this.songPosition == Session.get('currentlyPlayedVideo'))? 'isCurrentVideoItem': '');
@@ -64,11 +80,17 @@ Template.musyncSongListItem.helpers({
 });
 
 Template.musyncSongListItem.rendered = function () {
+
+    //show the player and let the user know the player is ready
     $('.songNotReadyShowThis').hide();
     $('.songReadyShowThis').show();
 };
 
+
+
 Template.musyncSongListItem.events({
+
+    //move the song up on the playlist
     'click .songlistMoveUp': function(e){
         e.stopPropagation();
         if(this.songPosition !== 0){
@@ -79,6 +101,8 @@ Template.musyncSongListItem.events({
             Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')-1);
         };
     }, 
+
+    //move the song down on the playlist
     'click .songlistMoveDown': function(e){
         e.stopPropagation();
         if (this.songPosition+1 !== Session.get('thisPlaylistData').songList.length) {
@@ -89,6 +113,8 @@ Template.musyncSongListItem.events({
             Session.set('currentlyPlayedVideo', Session.get('currentlyPlayedVideo')+1);
         };
     }, 
+
+    //remove the song from the playlist
     'click .songlistRemove': function(e){
         e.stopPropagation();
         Session.set('updatedShits', true);
@@ -96,6 +122,8 @@ Template.musyncSongListItem.events({
             setTimeout(function(){Session.set('updatedShits', true);Session.set('updatedShits', false);}, 1200);
         });
     },
+
+    //play this clicked song in the player
     'click .songlistButton': function(e){
         if(iframeApiReady.get()){
             Session.set('updatedShits', true);

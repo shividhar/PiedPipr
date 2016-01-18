@@ -1,3 +1,6 @@
+/* the mobile main page (/mobile route) */
+
+/*header*/
 #headerMobile{
 	width: 100%;
 	height: 240px;
@@ -31,10 +34,15 @@
 	background-repeat: no-repeat;
 	background-color: #CED4B6;
 	opacity: 0.24;
-	-webkit-filter: blur(3px);filter:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' ><filter id='blur3'><feGaussianBlur in='SourceGraphic' stdDeviation='3' /></filter></svg>#blur3");
-  filter:blur(3px);
+
+	/*blur the header background-image*/
+	-webkit-filter: blur(3px);
+	filter:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' ><filter id='blur3'><feGaussianBlur in='SourceGraphic' stdDeviation='3' /></filter></svg>#blur3");
+  	filter:blur(3px);
 }
 
+
+/*body of landing page*/
 #bodyMobile{
 	padding: 24px;
 	padding-bottom: 48px; padding-top: 9px;
@@ -112,7 +120,7 @@
 }
 
 
-
+/*-------------------------the join/create playlist modals-------------------------*/
 #overflowMobile{
 	position: fixed;
 	height: 100%;

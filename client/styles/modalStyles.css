@@ -1,3 +1,5 @@
+
+/*--------------------------general modal styles--------------------------*/
 .modalCont{
 	position: fixed;
 	top: 0; left: 0; height: 100%; width: 100%;
@@ -23,7 +25,7 @@ a.disabledButton{
 
 
 
-/*        history modal         */
+/*--------------------------history modal--------------------------*/
 #historyModal.modalCont>div{
 	position: relative;
 	height: 480px;
@@ -98,7 +100,7 @@ a.disabledButton{
 
 
 
-/* textInputModal */
+/*--------------------------text input modal generals--------------------------*/
 p.redText{
 	color: #8A523A!important;
 }
@@ -219,7 +221,7 @@ input.redText{
 
 
 
-/* choiceModal */
+/*--------------------------choice modal generals--------------------------*/
 
 .choiceModal{
 	position: relative;
@@ -317,7 +319,7 @@ input.redText{
 
 
 
-
+/*--------------------------for the share playlist modal on playlist routes--------------------------*/
 #sharePlaylist>img{
 	display: block;
 	position: relative;

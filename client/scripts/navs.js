@@ -1,13 +1,24 @@
 if (Meteor.isClient) {
+
+	//desktop navigation bars
 	var tempClearRequestsTimeout;
+
+
 	Template.navs.helpers({
 		currentUserHasViewedVideos: function () {
+			//check if user has already viewed some videos, if so, show the 'Viewed tracks' button
 			return Session.get('localVideosViewedData')? Session.get('localVideosViewedData').length: false;
 		},
 		modals: function() {
+
+			//figure out which modal to show --> this enables the stacking of modals
+
 			clearTimeout(tempClearRequestsTimeout);
 			
 			var modalsToRet = [];
+
+			//the order of these statements will deterimine modal heirarchy
+
 			if (Session.get('show-historyModal')) {
 				modalsToRet.push({'modalTemplateToUse': 'historyModal'});
 			}
@@ -21,6 +32,10 @@ if (Meteor.isClient) {
 				modalsToRet.push({'modalTemplateToUse': 'sharePlaylistModal'});
 			}
 			else if(Session.get('thisPlaylistData') && Session.get('thisPlaylistData').songListToApprove && Session.get('thisPlaylistData').authorId == Meteor.userId() && Router.current().params.playlistId) {
+
+				//if user has track addition requests to his/her playlist but at the same time has decided to auto-add tracks to that playlist, it'll accept the track in the background
+					//otherwise show the option modal
+
 				if (Session.get('thisPlaylistData').songListToApprove.length) {
 					if (!Session.get('enableAutoAcceptingTrackRecomms')) {
 						modalsToRet.push({'modalTemplateToUse': 'trackRecommendationChoiceModal'});
@@ -45,6 +60,9 @@ if (Meteor.isClient) {
 			return modalsToRet;
 		}
 	});
+
+
+	//events to show/hdie specific modals
 	Template.navs.events({
 		'click #joinPlaylist': function () {
 			Session.set('show-joinPlaylistModal', true);
