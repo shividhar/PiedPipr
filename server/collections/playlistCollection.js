@@ -27,8 +27,30 @@ if(Meteor.isServer){
             type: [String],
             defaultValue: [],
             optional: false
+        },
+        hostSongPosition: {
+            type: Number,
+            defaultValue: 0,
+            optional: false
+        },
+        hostSongVideoId: {
+            type: String,
+            optional: true
+        },
+        locationLongitude: {
+            type: Number,
+            decimal: true,
+            optional: true
+        },
+        locationLatitude: {
+            type: Number,
+            decimal: true,
+            optional: true
+        },
+        wifiAccessPointMacAddress: {
+            type: String,
+            optional: true
         }
-
     })
 
     Playlists.attachSchema(Schema.Playlists);
