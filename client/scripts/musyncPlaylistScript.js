@@ -4,7 +4,7 @@ if(Meteor.isClient){
 
 
     //the youtube api key
-    var apiKey = "AIzaSyD-29IN9uHhfvIVgQw9foPpz31bMc0bGE0";
+    var apiKey = "AIzaSyDkCK9qItgb5rHtzZnHz78auN-18pGq5zI";
   
     player = undefined;
 
@@ -371,10 +371,9 @@ if(Meteor.isClient){
 
             // if data api is ready, set a timeout to execute a search in due time
             if(dataApiReady){
-
-
                 clearTimeout(searchKeyupTimeout);
                 searchKeyupTimeout = setTimeout(function() {
+                    console.log(gapi.client)
                     var request = gapi.client.youtube.search.list({q: $thisval, maxResults: 10, part: 'snippet'});
                     request.execute(function(response){
                         var results = [];
